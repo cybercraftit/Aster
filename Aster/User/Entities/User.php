@@ -3,6 +3,7 @@
 namespace Aster\User\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
  * @property integer $ID
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class User extends Model
 {
+    use HasRolesAndAbilities;
     /**
      * The table associated with the model.
      * 
