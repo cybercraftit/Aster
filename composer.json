@@ -10,6 +10,7 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "laravel/ui": "^4.0",
         "nwidart/laravel-modules": "^9.0",
         "plank/laravel-metable": "^5.2",
         "silber/bouncer": "^1.0"
