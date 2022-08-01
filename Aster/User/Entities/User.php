@@ -2,7 +2,11 @@
 
 namespace Aster\User\Entities;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
@@ -17,26 +21,27 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
  * @property integer $user_status
  * @property string $display_name
  */
-class User extends Model
+class User extends Authenticatable
 {
-    use HasRolesAndAbilities;
+    use HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
+
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'as_users';
 
     /**
      * The primary key for the model.
-     * 
+     *
      * @var string
      */
     protected $primaryKey = 'ID';
 
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
