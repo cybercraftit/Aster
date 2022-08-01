@@ -1,5 +1,7 @@
 <?php
 
+use Aster\User\Entities\User;
+
 return [
 
     /*
@@ -38,7 +40,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'as_users',
         ],
     ],
 
@@ -60,9 +62,9 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'as_users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => User::class,
         ],
 
         // 'users' => [
@@ -88,7 +90,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'as_users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
