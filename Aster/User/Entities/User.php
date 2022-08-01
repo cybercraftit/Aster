@@ -25,6 +25,10 @@ class User extends Authenticatable
 {
     use HasRolesAndAbilities, HasApiTokens, HasFactory, Notifiable;
 
+    public function getAuthPassword() {
+        return $this->user_pass;
+    }
+
     /**
      * The table associated with the model.
      *
