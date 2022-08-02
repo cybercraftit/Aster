@@ -13,7 +13,7 @@ class CreateAsUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('ID');
             $table->string('user_login', 60)->default('')->index('user_login_key');
             $table->string('user_pass')->default('');
@@ -35,6 +35,6 @@ class CreateAsUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_users');
+        Schema::dropIfExists('users');
     }
 }

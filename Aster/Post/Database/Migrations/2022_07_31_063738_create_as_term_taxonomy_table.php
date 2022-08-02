@@ -13,7 +13,7 @@ class CreateAsTermTaxonomyTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_term_taxonomy', function (Blueprint $table) {
+        Schema::create('term_taxonomy', function (Blueprint $table) {
             $table->bigIncrements('term_taxonomy_id');
             $table->unsignedBigInteger('term_id')->default(0);
             $table->string('taxonomy', 32)->default('')->index('taxonomy');
@@ -32,6 +32,6 @@ class CreateAsTermTaxonomyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_term_taxonomy');
+        Schema::dropIfExists('term_taxonomy');
     }
 }

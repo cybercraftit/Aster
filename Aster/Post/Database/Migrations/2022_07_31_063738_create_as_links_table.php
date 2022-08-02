@@ -13,7 +13,7 @@ class CreateAsLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_links', function (Blueprint $table) {
+        Schema::create('links', function (Blueprint $table) {
             $table->bigIncrements('link_id');
             $table->string('link_url')->default('');
             $table->string('link_name')->default('');
@@ -37,6 +37,6 @@ class CreateAsLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_links');
+        Schema::dropIfExists('links');
     }
 }

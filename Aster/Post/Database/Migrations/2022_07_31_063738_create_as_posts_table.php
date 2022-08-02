@@ -13,7 +13,7 @@ class CreateAsPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_posts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('ID');
             $table->unsignedBigInteger('post_author')->default(0)->index('post_author');
             $table->dateTime('post_date')->default(DB::raw('CURRENT_TIMESTAMP'));
@@ -49,6 +49,6 @@ class CreateAsPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_posts');
+        Schema::dropIfExists('posts');
     }
 }

@@ -13,7 +13,7 @@ class CreateAsTermRelationshipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_term_relationships', function (Blueprint $table) {
+        Schema::create('term_relationships', function (Blueprint $table) {
             $table->unsignedBigInteger('object_id')->default(0);
             $table->unsignedBigInteger('term_taxonomy_id')->default(0)->index('term_taxonomy_id');
             $table->integer('term_order')->default(0);
@@ -29,6 +29,6 @@ class CreateAsTermRelationshipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_term_relationships');
+        Schema::dropIfExists('term_relationships');
     }
 }

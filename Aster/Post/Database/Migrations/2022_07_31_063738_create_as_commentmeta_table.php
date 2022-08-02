@@ -13,7 +13,7 @@ class CreateAsCommentmetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_commentmeta', function (Blueprint $table) {
+        Schema::create('commentmeta', function (Blueprint $table) {
             $table->bigIncrements('meta_id');
             $table->unsignedBigInteger('comment_id')->default(0)->index('comment_id');
             $table->string('meta_key')->nullable()->index('meta_key');
@@ -28,6 +28,6 @@ class CreateAsCommentmetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_commentmeta');
+        Schema::dropIfExists('commentmeta');
     }
 }

@@ -13,7 +13,7 @@ class CreateAsPostmetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_postmeta', function (Blueprint $table) {
+        Schema::create('postmeta', function (Blueprint $table) {
             $table->bigIncrements('meta_id');
             $table->unsignedBigInteger('post_id')->default(0)->index('post_id');
             $table->string('meta_key')->nullable()->index('meta_key');
@@ -28,6 +28,6 @@ class CreateAsPostmetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_postmeta');
+        Schema::dropIfExists('postmeta');
     }
 }

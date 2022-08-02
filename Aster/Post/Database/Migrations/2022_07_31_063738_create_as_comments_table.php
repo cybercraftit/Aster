@@ -13,7 +13,7 @@ class CreateAsCommentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_comments', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('comment_ID');
             $table->unsignedBigInteger('comment_post_ID')->default(0)->index('comment_post_ID');
             $table->text('comment_author');
@@ -41,6 +41,6 @@ class CreateAsCommentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_comments');
+        Schema::dropIfExists('comments');
     }
 }

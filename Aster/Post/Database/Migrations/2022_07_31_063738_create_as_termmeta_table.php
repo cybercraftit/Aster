@@ -13,7 +13,7 @@ class CreateAsTermmetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('as_termmeta', function (Blueprint $table) {
+        Schema::create('termmeta', function (Blueprint $table) {
             $table->bigIncrements('meta_id');
             $table->unsignedBigInteger('term_id')->default(0)->index('term_id');
             $table->string('meta_key')->nullable()->index('meta_key');
@@ -28,6 +28,6 @@ class CreateAsTermmetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('as_termmeta');
+        Schema::dropIfExists('termmeta');
     }
 }
