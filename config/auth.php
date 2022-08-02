@@ -17,7 +17,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'as_users',
+        'passwords' => 'users',
     ],
 
     /*
@@ -40,7 +40,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'as_users',
+            'provider' => 'users',
         ],
     ],
 
@@ -62,7 +62,7 @@ return [
     */
 
     'providers' => [
-        'as_users' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => User::class,
         ],

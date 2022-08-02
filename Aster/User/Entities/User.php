@@ -34,7 +34,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'as_users';
+    protected $table = 'users';
 
     /**
      * The primary key for the model.
