@@ -1,3 +1,4 @@
+// import path from 'path'
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
@@ -11,7 +12,7 @@ export default defineConfig({
                 /*'resources/sass/app.scss',
                 'resources/js/app.js',*/
                 'Aster/Admin/Resources/assets/sass/admin.scss',
-                'Aster/Admin/Resources/assets/js/app.js'
+                'Aster/Admin/Resources/assets/js/admin.js'
             ],
             refresh: true,
         }),
@@ -27,6 +28,7 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
+            //'~': path.resolve(__dirname, './src'), // used for resolving while building
         },
     },
 });

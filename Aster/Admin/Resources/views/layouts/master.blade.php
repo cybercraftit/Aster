@@ -7,13 +7,15 @@
         <title>Module Admin</title>
 
        {{-- Laravel Mix - CSS File --}}
-        <link rel="stylesheet" href="{{ mix('css/admin.css') }}">
+{{--        @vite(['Aster/Admin/Resources/assets/sass/admin.scss'])--}}
         @yield('css')
     </head>
     <body>
         @yield('content')
-        {{-- Laravel Mix - JS File --}}
-        <script src="{{ mix('js/admin.js') }}"></script>
+        <div class="bg-#000000">
+            qwe
+        </div>
+        @vite(['Aster/Admin/Resources/assets/js/admin.js'])
         @yield('js')
     </body>
 </html>
