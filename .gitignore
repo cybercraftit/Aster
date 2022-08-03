@@ -14,3 +14,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+Aster/Admin/node_modules
+Aster/User/node_modules
+Aster/Post/node_modules
