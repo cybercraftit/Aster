@@ -2,11 +2,9 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-import Unocss from '@unocss/vite'
 
 export default defineConfig({
     plugins: [
-        Unocss({ /* options */ }),
         laravel({
             input: [
                 /*'resources/sass/app.scss',
