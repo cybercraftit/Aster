@@ -17,7 +17,7 @@
 <!--    <link rel="stylesheet" href="{{ asset('build/assets/app.c090eeea.css') }}">
     <script src="{{ asset('build/assets/app.cb87047d.js') }}"></script>
     <script src="{{ asset('build/assets/app.6d0c6f97.js') }}"></script>-->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'Aster/Admin/Resources/assets/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'Aster/Admin/Resources/assets/js/admin.js'])
 </head>
 <body>
     <div id="app">
