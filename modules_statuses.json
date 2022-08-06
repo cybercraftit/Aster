@@ -2,5 +2,6 @@
     "User": true,
     "Blog": true,
     "Post": true,
-    "Admin": true
+    "Admin": true,
+    "Core": true
 }
