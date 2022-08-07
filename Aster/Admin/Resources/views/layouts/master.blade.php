@@ -11,9 +11,12 @@
         @yield('css')
     </head>
     <body>
+    <div>
+        
+    </div>
         @yield('content')
         <div class="bg-#000000">
-            qwe
+
         </div>
         @vite(['Aster/Admin/Resources/assets/js/admin.js'])
         @yield('js')

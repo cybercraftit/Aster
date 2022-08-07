@@ -40,12 +40,22 @@ class Menu{
     public function __construct() {
     }
 
-    public function add_menu_page( $item = [] ) {
-        $this->items[] = $item;
+    public function add_menu_page( $slug, $item = [] ) {
+        if ( ! isset( $item['name'] ) ) {
+            $item['name'] = $slug;
+        }
+        $this->items[$slug] = $item;
     }
 
-    public function add_submenu_page( $parent_slug, $item = [] ) {
-        $this->items[$parent_slug][] = $item;
+    public function add_submenu_page( $parent_slug, $slug, $item = [] ) {
+        if ( ! isset( $item['name'] ) ) {
+            $item['name'] = $slug;
+        }
+        $this->items[$parent_slug]['submenu'][$slug] = $item;
+    }
+
+    public function register_menu_items( $menu_items = [] ) {
+        $this->items = $menu_items;
     }
 
     public function get_menu_items() {
@@ -58,3 +68,4 @@ class Menu{
         return $this->items;
     }
 }
+

@@ -2,19 +2,26 @@
 
 namespace Aster\Admin\Http\Controllers;
 
+use Aster\Admin\Includes\Menu;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class AdminController extends Controller
 {
+    public function __construct() {
+        include_once app_path( '../Aster/Admin/System/system-admin.php');
+    }
+
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
     public function dashboard()
     {
-        return view('admin::dashboard');
+        $menu_items = Menu::instance()->get_menu_items();
+        $data = [ 'menu_items' => $menu_items ];
+        return view('admin::dashboard', compact( 'data' ) );
     }
 
     /**
