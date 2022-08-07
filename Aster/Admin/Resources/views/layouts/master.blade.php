@@ -12,7 +12,7 @@
     </head>
     <body>
     <div>
-        
+
     </div>
         @yield('content')
         <div class="bg-#000000">
