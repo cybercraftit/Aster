@@ -2,6 +2,7 @@
 
 namespace Aster\Admin\Providers;
 
+use Aster\Admin\Includes\Menu;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -38,6 +39,10 @@ class AdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->registerSystemFiles();
+    }
+    public function registerSystemFiles() {
+        include_once app_path('../Aster/Admin/Includes/load.php');
     }
 
     /**
