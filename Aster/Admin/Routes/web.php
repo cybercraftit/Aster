@@ -12,5 +12,9 @@
 */
 
 Route::prefix('admin')->group(function() {
+    $menu_items = \Aster\Admin\Includes\Menu::instance()->get_menu_items();
+    foreach ( $menu_items as $slug => $item ) {
+        Route::get( $slug, $item['callback'] );
+    }
     Route::get('/dashboard', 'AdminController@dashboard');
 });
