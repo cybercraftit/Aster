@@ -28,6 +28,7 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+        $this->registerSystemFiles();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
     }
 
@@ -39,10 +40,14 @@ class AdminServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->registerSystemFiles();
+        $this->registerSystemIncludes();
     }
-    public function registerSystemFiles() {
+    public function registerSystemIncludes() {
         include_once app_path('../Aster/Admin/Includes/load.php');
+    }
+
+    public function registerSystemFiles() {
+        include_once app_path( '../Aster/Admin/System/init.php' );
     }
 
     /**
