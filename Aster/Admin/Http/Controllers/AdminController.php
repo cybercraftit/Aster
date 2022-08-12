@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $menu_items = Menu::instance()->get_menu_items();
-        dd($menu_items);
+//        dd($menu_items);
         $data = [ 'menu_items' => $menu_items ];
         return view('admin::dashboard', compact( 'data' ) );
     }
