@@ -44,6 +44,7 @@ class Menu{
         if ( ! isset( $item['name'] ) ) {
             $item['name'] = $slug;
         }
+        $item['slug'] = $slug;
         $this->items[$slug] = $item;
     }
 
@@ -51,6 +52,7 @@ class Menu{
         if ( ! isset( $item['name'] ) ) {
             $item['name'] = $slug;
         }
+        $item['slug'] = $slug;
         $this->items[$parent_slug]['submenu'][$slug] = $item;
     }
 

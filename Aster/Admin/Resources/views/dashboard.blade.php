@@ -6,3 +6,11 @@
         This view is loaded from module: {!! config('admin.name') !!}
     </p>
 @endsection
+
+@section('js')
+    <script>
+        data = Object.assign(data,{
+
+        })
+    </script>
+@endsection

@@ -47,7 +47,6 @@ class AdminServiceProvider extends ServiceProvider
     }
 
     public function registerSystemFiles() {
-        include_once app_path( '../Aster/Admin/System/init.php' );
     }
 
     /**

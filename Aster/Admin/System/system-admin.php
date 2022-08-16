@@ -44,21 +44,25 @@ class Admin {
 
     public function register_menu_items() {
         Menu::instance()->add_menu_page( 'posts', [
+            'label' => 'Posts',
             'callback' => function() {
                 echo 'This is post page.';
             }
         ]);
         Menu::instance()->add_submenu_page( 'posts', 'add-post', [
+            'label' => 'Add Post',
             'callback' => function() {
                 echo 'This is post submenu page.';
             }
         ]);
         Menu::instance()->add_menu_page( 'comments', [
+            'label' => 'Comments',
             'callback' => function() {
                 echo 'This is comments page.';
             }
         ]);
         Menu::instance()->add_submenu_page( 'comments', 'add-comment', [
+            'label' => 'Add Comment',
             'callback' => function() {
                 echo 'This is post submenu page.';
             }
