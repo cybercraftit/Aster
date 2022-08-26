@@ -9,8 +9,6 @@
 
 @section('js')
     <script>
-        data = Object.assign(data,{
-
-        })
+        data = Object.assign(data,{})
     </script>
 @endsection

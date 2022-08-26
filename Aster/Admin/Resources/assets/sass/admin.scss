@@ -1,19 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// Fonts
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-::-webkit-scrollbar {
-    width: 7px;
-}
+// Variables
+//@import 'variables';
 
-::-webkit-scrollbar-track{
-    background: #2D3748;
-}
+// Bootstrap
+//@import 'bootstrap/scss/bootstrap';
 
-::-webkit-scrollbar-thumb{
-    background: #CBD5E0;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background: #718096;
-}
+@import "style";

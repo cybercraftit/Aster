@@ -8,7 +8,7 @@ export default defineConfig({
         laravel({
             input: [
                 // 'resources/sass/app.scss',
-                'resources/js/app.js',
+                // 'resources/js/app.js',
                 'Aster/Admin/Resources/assets/sass/admin.scss',
                 'Aster/Admin/Resources/assets/js/admin.js'
             ],
