@@ -38,14 +38,18 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->registerIncludes();
         $this->registerAdminIncludes();
-        $this->registerSystemFiles();
+        $this->registerIncludes();
         $this->registerAdminSystemFiles();
+        $this->registerSystemFiles();
     }
 
     public function registerIncludes() {
         include_once app_path('../Aster/Core/Includes/load.php');
+    }
+
+    public function registerSystemFiles() {
+        include_once app_path( '../Aster/Core/System/init.php' );
     }
 
     public function registerAdminIncludes() {
@@ -54,10 +58,6 @@ class CoreServiceProvider extends ServiceProvider
         }
 
         include_once app_path('../Aster/Core/AdminIncludes/load.php');
-    }
-
-    public function registerSystemFiles() {
-        include_once app_path( '../Aster/Core/System/init.php' );
     }
 
     public function registerAdminSystemFiles() {
