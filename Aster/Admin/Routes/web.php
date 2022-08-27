@@ -11,7 +11,6 @@
 |
 */
 
-include_once app_path( '../Aster/Admin/System/init.php' );
 Route::prefix('admin')->group(function() {
     $menu_items = \Aster\Admin\Includes\Menu::instance()->get_menu_items();
     foreach ( $menu_items as $slug => $item ) {

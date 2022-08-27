@@ -41,12 +41,14 @@ class AdminServiceProvider extends ServiceProvider
     {
         $this->app->register(RouteServiceProvider::class);
         $this->registerSystemIncludes();
+        $this->registerSystemFiles();
     }
     public function registerSystemIncludes() {
         include_once app_path('../Aster/Admin/Includes/load.php');
     }
 
     public function registerSystemFiles() {
+        include_once app_path( '../Aster/Admin/System/init.php' );
     }
 
     /**
