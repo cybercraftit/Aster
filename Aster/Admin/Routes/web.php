@@ -12,7 +12,7 @@
 */
 
 Route::prefix('admin')->group(function() {
-    $menu_items = \Aster\Admin\Includes\Menu::instance()->get_menu_items();
+    $menu_items = \Aster\Admin\AdminIncludes\Menu::instance()->get_menu_items();
     foreach ( $menu_items as $slug => $item ) {
         Route::get( $slug, $item['callback'] )->name( $item['name'] );
 

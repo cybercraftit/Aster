@@ -1,9 +1,9 @@
 <?php
 
-namespace Aster\Admin\System;
+namespace Aster\Admin\AdminSystem;
 
 
-use Aster\Admin\Includes\Menu;
+use Aster\Admin\AdminIncludes\Menu;
 
 class Admin {
 

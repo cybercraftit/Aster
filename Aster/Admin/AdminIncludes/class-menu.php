@@ -1,6 +1,6 @@
 <?php
 
-namespace Aster\Admin\Includes;
+namespace Aster\Admin\AdminIncludes;
 
 class Menu{
 

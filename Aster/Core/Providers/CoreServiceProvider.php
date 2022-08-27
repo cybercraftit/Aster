@@ -38,6 +38,33 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->registerIncludes();
+        $this->registerAdminIncludes();
+        $this->registerSystemFiles();
+        $this->registerAdminSystemFiles();
+    }
+
+    public function registerIncludes() {
+        include_once app_path('../Aster/Core/Includes/load.php');
+    }
+
+    public function registerAdminIncludes() {
+        if ( strpos( $this->app->request->getRequestUri(), \Module::config('admin_prefix') ) === false ) {
+            return;
+        }
+
+        include_once app_path('../Aster/Core/AdminIncludes/load.php');
+    }
+
+    public function registerSystemFiles() {
+        include_once app_path( '../Aster/Core/System/init.php' );
+    }
+
+    public function registerAdminSystemFiles() {
+        if ( strpos( $this->app->request->getRequestUri(), \Module::config('admin_prefix') ) === false ) {
+            return;
+        }
+        include_once app_path( '../Aster/Core/AdminSystem/init.php' );
     }
 
     /**
