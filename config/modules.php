@@ -5,6 +5,8 @@ use Nwidart\Modules\Commands;
 
 return [
 
+    'admin_prefix' => 'admin',
+
     /*
     |--------------------------------------------------------------------------
     | Module Namespace
