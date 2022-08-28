@@ -394,7 +394,7 @@
                                     @if( $item['submenu'] )
                                     <ul aria-expanded="false" class="collapse first-level" :class="{'in' : submenu_open == d.menu_items['{!! $item_key !!}'].slug}">
                                         <li class="sidebar-item">
-                                            <a href="route($item['name'])" class="sidebar-link"
+                                            <a href="{{ route($item['name']) }}" class="sidebar-link"
                                             ><i class="mdi mdi-note-outline"></i
                                                 ><span class="hide-menu"> {{ $item['label'] }} </span></a>
                                         </li>
@@ -644,10 +644,13 @@
     <script>
         let data = {
             submenu_open: null,
-            d: JSON.parse('{!! json_encode($data) !!}')
+            d: JSON.parse(atob('{!! base64_encode( json_encode($data) ) !!}'))
         }
     </script>
     @yield('js')
+    <script>
+        data = Object.assign(data,{})
+    </script>
     @vite(['Aster/Admin/Resources/assets/js/admin.js'])
 
     </body>
