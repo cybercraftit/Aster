@@ -8,14 +8,7 @@ use Illuminate\Routing\Controller;
 
 class CoreController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        return view('core::index');
-    }
+    protected $data;
 
     /**
      * Show the form for creating a new resource.

@@ -12,7 +12,7 @@
     </head>
     <body>
     @php
-	extract( $data );
+       extract( $data );
     @endphp
     <div id="app"
         class="flex h-screen bg-gray-50 dark:bg-gray-900"
@@ -639,7 +639,13 @@
                 </div>
                 <!-- End Sidebar scroll-->
             </aside>
+            <div class="page-wrapper">
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+            </div>
 <!--        new bootstrap theme ends -->
+    </div>
     </div>
     <script>
         let data = {

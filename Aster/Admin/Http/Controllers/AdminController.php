@@ -3,14 +3,17 @@
 namespace Aster\Admin\Http\Controllers;
 
 use Aster\Admin\AdminIncludes\Menu;
+use Aster\Core\Http\Controllers\CoreController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\View;
 
-class AdminController extends Controller
+class AdminController extends CoreController
 {
     public function __construct() {
-
+        $menu_items = Menu::instance()->get_menu_items();
+        $this->data['menu_items'] = $menu_items;
     }
 
     /**
@@ -19,10 +22,9 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        $menu_items = Menu::instance()->get_menu_items();
-//        dd($menu_items);
-        $data = [ 'menu_items' => $menu_items ];
-        return view('admin::dashboard', compact( 'data' ) );
+        return view('admin::dashboard', [
+            'data' => $this->data
+        ] );
     }
 
     /**
