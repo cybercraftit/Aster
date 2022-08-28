@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Hello World</h1>
-
+    {!! form($form) !!}
     <p>
         This is posts page. This view is loaded from module: {!! config('post.name') !!}
     </p>
