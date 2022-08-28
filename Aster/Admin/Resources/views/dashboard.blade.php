@@ -8,7 +8,4 @@
 @endsection
 
 @section('js')
-    <script>
-        data = Object.assign(data,{})
-    </script>
 @endsection
