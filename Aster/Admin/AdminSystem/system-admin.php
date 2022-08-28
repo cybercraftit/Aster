@@ -4,6 +4,7 @@ namespace Aster\Admin\AdminSystem;
 
 
 use Aster\Admin\AdminIncludes\Menu;
+use Aster\Post\Http\Controllers\Admin\AdminPostController;
 
 class Admin {
 
@@ -45,9 +46,7 @@ class Admin {
     public function register_menu_items() {
         Menu::instance()->add_menu_page( 'posts', [
             'label' => 'Posts',
-            'callback' => function() {
-                echo 'This is post page.';
-            }
+            'callback' => [ AdminPostController::class, 'index']
         ]);
         Menu::instance()->add_submenu_page( 'posts', 'add-post', [
             'label' => 'Add Post',
