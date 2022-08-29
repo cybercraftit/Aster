@@ -3,10 +3,9 @@
 namespace Aster\Post\Http\Controllers\Admin;
 
 use Aster\Admin\Http\Controllers\AdminController;
+use Aster\Post\Entities\Post;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Kris\LaravelFormBuilder\FormBuilder;
 
 class AdminPostController extends AdminController
 {
@@ -14,16 +13,11 @@ class AdminPostController extends AdminController
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index( FormBuilder $formbuilder )
+    public function index()
     {
-        $form = $formbuilder->create('App\Forms\SongForm', [
-            'method' => 'POST',
-            'url' => ''
-        ]);
-        $this->data['form'] = $form;
+        $this->data['items'] = Post::paginate( 20 );
         return view('post::admin.index', [
             'data' => $this->data,
-            'form' => $form
         ] );
     }
 
