@@ -2,6 +2,7 @@
 
 namespace Aster\User\Entities;
 
+use Aster\Post\Entities\Post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,4 +55,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = ['user_login', 'user_pass', 'user_nicename', 'user_email', 'user_url', 'user_registered', 'user_activation_key', 'user_status', 'display_name'];
+
+    public function posts() {
+        return $this->hasMany( Post::class, 'post_author', 'ID' );
+    }
 }
