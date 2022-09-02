@@ -1,0 +1,54 @@
+{
+    "name": "cybercraftit/aster",
+    "description": "A superhero CMS for you",
+    "keywords": [
+        "cybercraftit",
+        "aster"
+    ],
+    "homepage": "https://github.com/cybercraftit/aster",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mithu A Quayium",
+            "email": "cemithu06@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2",
+        "illuminate/support": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cybercraftit\\Aster\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Cybercraftit\\Aster\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cybercraftit\\Aster\\AsterServiceProvider"
+            ],
+            "aliases": {
+                "Aster": "Cybercraftit\\Aster\\AsterFacade"
+            }
+        }
+    }
+}

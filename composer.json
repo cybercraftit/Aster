@@ -14,7 +14,8 @@
         "laravel/ui": "^4.0",
         "nwidart/laravel-modules": "^9.0",
         "plank/laravel-metable": "^5.2",
-        "silber/bouncer": "^1.0"
+        "silber/bouncer": "^1.0",
+        "cybercraftit/aster": "@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -58,6 +59,15 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        }
+    },
+    "repositories": {
+        "aster" : {
+            "type" : "path",
+            "url" : "packages/cybercraftit/aster",
+            "options": {
+                "symlink": true
+            }
         }
     },
     "config": {
