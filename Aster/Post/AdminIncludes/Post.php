@@ -41,11 +41,12 @@ class Post {
 
     }
 
-    public function add_theme_support( $model, $post_type = null, $support_name, $callback ) {
-        $this->add_post_support( $model,$post_type, $support_name, $callback );
-    }
-
-    protected function add_post_support( $model,$post_type, $support_name, $callback ) {
-        $this->post_supports[$model][$post_type][$support_name] = $callback;
+    public function get_post_route( $context = 'index', $param = [] ) {
+        $url = '';
+        switch ( $context ) {
+            case 'index':
+//                $url = route()
+                break;
+        }
     }
 }
