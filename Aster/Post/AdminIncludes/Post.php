@@ -41,12 +41,14 @@ class Post {
 
     }
 
-    public function get_post_route( $context = 'index', $param = [] ) {
+    public function get_route( $context = 'browse', $model = null, $param = [] ) {
         $url = '';
         switch ( $context ) {
             case 'index':
 //                $url = route()
                 break;
         }
+
+        return $url;
     }
 }
