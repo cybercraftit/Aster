@@ -3,6 +3,8 @@
 namespace Aster\Post\AdminSystem;
 
 use Aster\Admin\AdminIncludes\Menu;
+use Aster\Post\AdminIncludes\Model;
+use Aster\Post\Entities\Post;
 use Aster\Post\Http\Controllers\Admin\AdminPostController;
 
 class Admin{
@@ -43,6 +45,7 @@ class Admin{
     }
 
     public function register_menu_items() {
+        Model::instance()->register_model( Post::class, []);
         Menu::instance()->add_menu_page( 'posts', [
             'label' => 'Posts',
             'callback' => [ AdminPostController::class, 'index']
