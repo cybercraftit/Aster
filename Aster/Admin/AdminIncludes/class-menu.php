@@ -2,6 +2,8 @@
 
 namespace Aster\Admin\AdminIncludes;
 
+use Aster\Post\AdminIncludes\Route;
+
 class Menu{
 
     /**
@@ -40,20 +42,55 @@ class Menu{
     public function __construct() {
     }
 
-    public function add_menu_page( $slug, $item = [] ) {
-        if ( ! isset( $item['name'] ) ) {
-            $item['name'] = $slug;
+    /**
+     * @param $slug
+     * @param $item
+     * @param $add_route
+     *
+     * @return void
+     */
+    public function add_menu_page( $slug, $item = [], $add_route = true ) {
+        $default = [
+            'url' => '',
+            'slug' => '',
+            'name' => '',
+            'label' => 'Posts',
+            'callback' => function() {}
+        ];
+        $item = array_merge( $default, $item );
+
+        //add name
+        if ( ! isset( $item['name'] ) || ! $item['name'] ) {
+            $item['name'] = 'admin.'.$slug.'.browse';
         }
-        $item['slug'] = $slug;
+
         $this->items[$slug] = $item;
+
+        //add route
+        if ( $add_route ) {
+            Route::instance()->add_route( $slug, $item['callback'], $item['name'] );
+        }
     }
 
-    public function add_submenu_page( $parent_slug, $slug, $item = [] ) {
+    /**
+     * @param $parent_slug
+     * @param $slug
+     * @param $item
+     * @param $add_route
+     *
+     * @return void
+     */
+    public function add_submenu_page( $parent_slug, $slug, $item = [], $add_route = true ) {
+        //add name
         if ( ! isset( $item['name'] ) ) {
-            $item['name'] = $slug;
+            $item['name'] = 'admin.'.$parent_slug.'.'.$slug.'.browse';
         }
         $item['slug'] = $slug;
         $this->items[$parent_slug]['submenu'][$slug] = $item;
+        //add route
+        if ( $add_route ) {
+            Route::instance()->add_route( $parent_slug.'/'.$slug, $item['callback'], $item['name'] );
+        }
     }
 
     public function register_menu_items( $menu_items = [] ) {
