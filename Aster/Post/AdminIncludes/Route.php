@@ -15,6 +15,7 @@ class Route{
     private static $_instance = null;
 
     protected $routes = [];
+    protected $route_names = [];
 
     /**
      * Instance
@@ -68,6 +69,10 @@ class Route{
             $name .= '.' . $action_method;
         }
         return $name;
+    }
+
+    public function get_menu_page_route_name( $slug ) {
+        return 'admin.'.$slug;
     }
 
     public function get_model_route( $model, $context = 'browse', $args = [], $admin = false ) {
