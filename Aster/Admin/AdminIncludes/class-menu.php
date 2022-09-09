@@ -71,6 +71,7 @@ class Menu{
 
         //add admin menu
         $this->add_menu_item([
+            'label' => $item['label'],
             'name' => $item['name']
         ]);
     }
@@ -97,7 +98,8 @@ class Menu{
 
         //add menu item
         $this->add_submenu_item( Route::instance()->get_menu_page_route_name( $parent_slug ), [
-            'name' => $item['name']
+            'name' => $item['name'],
+            'label' => $item['label']
         ]);
     }
 
@@ -141,7 +143,7 @@ class Menu{
             'callback' => function() {}
         ];
         $item = array_merge( $default, $item );
-        $this->items[$parent_name]['submenu'] = $item;
+        $this->items[$parent_name]['submenu'][$item['name']] = $item;
     }
 }
 
