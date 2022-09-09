@@ -381,26 +381,26 @@
                     <!-- Sidebar navigation-->
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav" class="pt-4">
-                            @foreach( $menu_items as $item_key => $item )
-                                <li class="sidebar-item" @click="submenu_open  = submenu_open == null ? d.menu_items['{!! $item_key !!}'].slug : null">
+                            @foreach( $menu_items as $item_name => $item )
+                                <li class="sidebar-item" @click="submenu_open  = submenu_open == null ? '{{ $item_name }}' : null">
                                     <a
                                         class="sidebar-link waves-effect waves-dark sidebar-link
                                         {{ $item['submenu'] ? 'has-arrow' : '' }}"
-                                        :class="submenu_open == d.menu_items['{!! $item_key !!}'].slug ? 'active' : ''"
+                                        :class="submenu_open == '{{ $item_name }}' ? 'active' : ''"
                                         href="{{ $item['submenu'] ? 'javascript:' : route($item['name']) }}"
                                         aria-expanded="false"
                                     ><i class="mdi mdi-view-dashboard"></i
                                         ><span class="hide-menu">{{ $item['label'] }}</span></a>
                                     @if( $item['submenu'] )
-                                    <ul aria-expanded="false" class="collapse first-level" :class="{'in' : submenu_open == d.menu_items['{!! $item_key !!}'].slug}">
+                                    <ul aria-expanded="false" class="collapse first-level" :class="{'in' : submenu_open == '{{ $item_name }}'}">
                                         <li class="sidebar-item">
                                             <a href="{{ route($item['name']) }}" class="sidebar-link"
                                             ><i class="mdi mdi-note-outline"></i
                                                 ><span class="hide-menu"> {{ $item['label'] }} </span></a>
                                         </li>
-                                        @foreach( $item['submenu'] as $subitem_key => $subitem )
+                                        @foreach( $item['submenu'] as $subitem_name => $subitem )
                                         <li class="sidebar-item">
-                                            <a href="form-basic.html" class="sidebar-link"
+                                            <a href="{{ route( $subitem_name ) }}" class="sidebar-link"
                                             ><i class="mdi mdi-note-outline"></i
                                                 ><span class="hide-menu"> {{ $subitem['label'] }} </span></a
                                             >
