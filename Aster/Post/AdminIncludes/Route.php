@@ -52,6 +52,8 @@ class Route{
             'name' => $name,
             'slug' => $slug
         ];
+
+        \Route::get( $slug, $callback )->name( $name );
     }
 
     public function add_model_route( $slug, $callback, $model, $context = 'browse', $admin = false ) {
