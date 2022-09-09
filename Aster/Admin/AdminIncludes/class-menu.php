@@ -61,15 +61,18 @@ class Menu{
 
         //add name
         if ( ! isset( $item['name'] ) || ! $item['name'] ) {
-            $item['name'] = 'admin.'.$slug.'.browse';
+            $item['name'] = Route::instance()->get_menu_page_route_name( $slug );
         }
-
-        $this->items[$slug] = $item;
 
         //add route
         if ( $add_route ) {
             Route::instance()->add_route( $slug, $item['callback'], $item['name'] );
         }
+
+        //add admin menu
+        $this->add_menu_item([
+            'name' => $item['name']
+        ]);
     }
 
     /**
@@ -83,14 +86,19 @@ class Menu{
     public function add_submenu_page( $parent_slug, $slug, $item = [], $add_route = true ) {
         //add name
         if ( ! isset( $item['name'] ) ) {
-            $item['name'] = 'admin.'.$parent_slug.'.'.$slug.'.browse';
+            $item['name'] = 'admin.'.$parent_slug.'.'.$slug;
         }
         $item['slug'] = $slug;
-        $this->items[$parent_slug]['submenu'][$slug] = $item;
+
         //add route
         if ( $add_route ) {
             Route::instance()->add_route( $parent_slug.'/'.$slug, $item['callback'], $item['name'] );
         }
+
+        //add menu item
+        $this->add_submenu_item( Route::instance()->get_menu_page_route_name( $parent_slug ), [
+            'name' => $item['name']
+        ]);
     }
 
     public function register_menu_items( $menu_items = [] ) {
@@ -105,6 +113,35 @@ class Menu{
             }
         ];*/
         return $this->items;
+    }
+
+    /**
+     * @param $item
+     *
+     * @return void
+     */
+    public function add_menu_item( $item ) {
+        $default = [
+            'url' => '',//Todo: optional, decide later
+            'slug' => '',//Todo: optional, decide later
+            'name' => '',
+            'label' => 'Posts',
+            'callback' => function() {}
+        ];
+        $item = array_merge( $default, $item );
+        $this->items[$item['name']] = $item;
+    }
+
+    public function add_submenu_item( $parent_name, $item ) {
+        $default = [
+            'url' => '',//Todo: optional, decide later
+            'slug' => '',//Todo: optional, decide later
+            'name' => '',
+            'label' => 'Posts',
+            'callback' => function() {}
+        ];
+        $item = array_merge( $default, $item );
+        $this->items[$parent_name]['submenu'] = $item;
     }
 }
 
