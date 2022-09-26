@@ -7,19 +7,14 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
-        "kris/laravel-form-builder": "^1.51",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.0",
         "nwidart/laravel-modules": "^9.0",
-        "plank/laravel-metable": "^5.2",
-        "silber/bouncer": "^1.0"
+        "cybercraftit/aster": "@dev"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "kitloong/laravel-migrations-generator": "^6.3",
-        "krlove/eloquent-model-generator": "^2.0",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
@@ -58,6 +53,15 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        }
+    },
+    "repositories": {
+        "aster" : {
+            "type" : "path",
+            "url" : "packages/cybercraftit/aster",
+            "options": {
+                "symlink": true
+            }
         }
     },
     "config": {

@@ -1,0 +1,56 @@
+{
+    "name": "cybercraftit/aster",
+    "description": "This package is to make CMS",
+    "keywords": [
+        "laravel"
+    ],
+    "homepage": "https://github.com/cybercraftit/aster",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mithu A Quayium",
+            "email": "cemithu06@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^9.6",
+        "plank/laravel-metable": "^5.2",
+        "silber/bouncer": "^1.0",
+        "kris/laravel-form-builder": "^1.51",
+        "laravel/ui": "^4.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0",
+        "phpunit/phpunit": "^9.0",
+        "kitloong/laravel-migrations-generator": "^6.3",
+        "krlove/eloquent-model-generator": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "cybercraftit\\aster\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "cybercraftit\\aster\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "cybercraftit\\aster\\AsterServiceProvider"
+            ]
+        }
+    }
+}
