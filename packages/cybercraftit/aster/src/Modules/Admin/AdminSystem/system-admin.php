@@ -1,9 +1,9 @@
 <?php
 
-namespace Aster\Admin\AdminSystem;
+namespace Cybercraftit\Aster\Modules\Admin\AdminSystem;
 
 
-use Aster\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Aster\Post\Http\Controllers\Admin\AdminPostController;
 
 class Admin {

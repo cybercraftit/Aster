@@ -1,9 +1,9 @@
 <?php
 
-namespace Aster\Post\AdminSystem;
+namespace Cybercraftit\Aster\Modules\Post\AdminSystem;
 
-use Aster\Admin\AdminIncludes\Menu;
-use Aster\Post\AdminIncludes\Model;
+use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
 use Aster\Post\Entities\Post;
 use Aster\Post\Http\Controllers\Admin\AdminPostController;
 

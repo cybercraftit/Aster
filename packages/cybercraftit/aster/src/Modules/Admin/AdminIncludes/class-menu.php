@@ -1,8 +1,8 @@
 <?php
 
-namespace Aster\Admin\AdminIncludes;
+namespace Cybercraftit\Aster\Modules\Admin\AdminIncludes;
 
-use Aster\Post\AdminIncludes\Route;
+use Cybercraftit\Aster\Modules\Post\AdminIncludes\Route;
 
 class Menu{
 

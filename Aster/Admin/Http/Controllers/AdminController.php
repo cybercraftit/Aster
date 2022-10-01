@@ -2,7 +2,7 @@
 
 namespace Aster\Admin\Http\Controllers;
 
-use Aster\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Aster\Core\Http\Controllers\CoreController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;

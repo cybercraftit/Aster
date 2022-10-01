@@ -1,6 +1,6 @@
 <?php
 
-namespace Aster\Post\AdminIncludes;
+namespace Cybercraftit\Aster\Modules\Post\AdminIncludes;
 
 class Route{
 

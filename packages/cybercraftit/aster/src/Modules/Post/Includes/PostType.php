@@ -1,8 +1,8 @@
 <?php
 
-namespace Aster\Admin\Includes;
+namespace Cybercraftit\Aster\Modules\Post\Includes;
 
-class Taxonomy{
+class PostType{
 
     /**
      * Instance
@@ -14,7 +14,7 @@ class Taxonomy{
      */
     private static $_instance = null;
 
-    protected $taxonomies = [];
+    protected $post_types = [];
 
     /**
      * Instance
@@ -38,10 +38,10 @@ class Taxonomy{
     }
 
     public function __construct() {
+
     }
 
-    public function register_taxonomy( $tax_name, $post_type = [] , $arg = [] ) {
-        $this->taxonomies[$tax_name] = $arg;
-        $this->taxonomies[$tax_name]['post_types'] = $post_type;
+    public function register_post_type( $post_type, $args = [] ) {
+        $this->post_types[$post_type] = $args;
     }
 }

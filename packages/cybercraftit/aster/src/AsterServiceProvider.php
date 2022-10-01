@@ -17,7 +17,7 @@ class AsterServiceProvider extends ServiceProvider
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'aster');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'aster');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+//         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -49,6 +49,10 @@ class AsterServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerIncludes();
+        $this->registerAdminIncludes();
+        $this->registerSystemFiles();
+        $this->registerAdminSystemFiles();
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'aster');
 
@@ -56,5 +60,28 @@ class AsterServiceProvider extends ServiceProvider
         $this->app->singleton('aster', function () {
             return new Aster;
         });
+    }
+
+    public function registerIncludes() {
+        include_once __DIR__ . '/Includes/load.php';
+    }
+
+    public function registerAdminIncludes() {
+        if ( strpos( $this->app->request->getRequestUri(), 'admin' ) === false ) {
+            return;
+        }
+
+        include_once __DIR__ . '/AdminIncludes/load.php';
+    }
+
+    public function registerSystemFiles() {
+        include_once __DIR__ . '/System/init.php';
+    }
+
+    public function registerAdminSystemFiles() {
+        if ( strpos( $this->app->request->getRequestUri(), 'admin' ) === false ) {
+            return;
+        }
+        include_once __DIR__ . '/AdminSystem/init.php';
     }
 }

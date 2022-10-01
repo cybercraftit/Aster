@@ -2,7 +2,7 @@
 
 namespace Aster\Admin\Providers;
 
-use Aster\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 

@@ -39,10 +39,7 @@ class CoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
-        $this->registerIncludes();
-        $this->registerAdminIncludes();
-        $this->registerSystemFiles();
-        $this->registerAdminSystemFiles();
+
     }
 
     public function registerIncludes() {

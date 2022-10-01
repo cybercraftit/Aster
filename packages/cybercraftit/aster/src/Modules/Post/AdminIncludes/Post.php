@@ -1,8 +1,8 @@
 <?php
 
-namespace Aster\Post\Includes;
+namespace Cybercraftit\Aster\Modules\Post\AdminIncludes;
 
-class PostType{
+class Post {
 
     /**
      * Instance
@@ -14,7 +14,7 @@ class PostType{
      */
     private static $_instance = null;
 
-    protected $post_types = [];
+    protected $post_supports = [];
 
     /**
      * Instance
@@ -41,7 +41,14 @@ class PostType{
 
     }
 
-    public function register_post_type( $post_type, $args = [] ) {
-        $this->post_types[$post_type] = $args;
+    public function get_route( $context = 'browse', $model = null, $param = [] ) {
+        $url = '';
+        switch ( $context ) {
+            case 'index':
+//                $url = route()
+                break;
+        }
+
+        return $url;
     }
 }

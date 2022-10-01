@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <a href="{{ \Aster\Post\AdminIncludes\Route::instance()->get_model_route( \Aster\Post\Entities\Post::class, [], 'browse' ) }}">Add Post</a>
+                        <a href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Aster\Post\Entities\Post::class, [], 'browse' ) }}">Add Post</a>
                     </div>
                 </div>
             </div>
