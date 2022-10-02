@@ -17,7 +17,9 @@ class AsterServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'aster');
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'aster');
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
+        if ( file_exists( __DIR__.'/routes.php' ) ) {
+            $this->loadRoutesFrom(__DIR__.'/routes.php');
+        }
 
         $modules = glob( __DIR__ . '/Modules/*' );
         foreach ( $modules as $k => $module_path ) {
@@ -28,7 +30,9 @@ class AsterServiceProvider extends ServiceProvider
             //migration
             $this->loadMigrationsFrom($module_path . '/database/migrations' );
             //route
-            $this->loadRoutesFrom($module_path . '/routes/routes.php');
+            if ( file_exists( $module_path . '/routes/routes.php' ) ) {
+                $this->loadRoutesFrom($module_path . '/routes/routes.php');
+            }
         }
 
 
