@@ -14,10 +14,23 @@ class AsterServiceProvider extends ServiceProvider
         /*
          * Optional methods to load your package assets
          */
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'aster');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'aster');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-//         $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'aster');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'aster');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
+
+        $modules = glob( __DIR__ . '/Modules/*' );
+        foreach ( $modules as $k => $module_path ) {
+            //translations
+            $this->loadTranslationsFrom($module_path.'/resources/lang', 'aster');
+            //view
+            $this->loadViewsFrom($module_path.'/resources/views', 'aster');
+            //migration
+            $this->loadMigrationsFrom($module_path . '/database/migrations' );
+            //route
+            $this->loadRoutesFrom($module_path . '/routes/routes.php');
+        }
+
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
