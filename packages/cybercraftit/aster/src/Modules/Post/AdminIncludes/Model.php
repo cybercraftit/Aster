@@ -103,6 +103,10 @@ class Model{
                             \Route::delete( '/' . $args['slug'] . '/delete', $callback )
                                 ->name( Route::instance()->get_model_route_name( $model, $action, 'delete', true ) );
                             break;
+                        default:
+                            \Route::get( '/' . $args['slug'] . '/' . $action, $callback )
+                                  ->name( Route::instance()->get_model_route_name( $model, $action, 'delete', true ) );
+                            break;
                     }
                 }
             });
@@ -135,6 +139,10 @@ class Model{
                     case 'delete' :
                         \Route::delete( '/' . $args['slug'] . '/delete', $callback )
                             ->name( Route::instance()->get_model_route_name( $model, $action, 'delete', false ) );
+                        break;
+                    default:
+                        \Route::get( '/' . $args['slug'] . '/' . $action, $callback )
+                              ->name( Route::instance()->get_model_route_name( $model, $action, 'delete', false ) );
                         break;
                 }
             }

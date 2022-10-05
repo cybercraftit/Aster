@@ -24,9 +24,9 @@ class AsterServiceProvider extends ServiceProvider
         $modules = glob( __DIR__ . '/Modules/*' );
         foreach ( $modules as $k => $module_path ) {
             //translations
-            $this->loadTranslationsFrom($module_path.'/resources/lang', 'aster');
+            $this->loadTranslationsFrom($module_path.'/resources/lang', 'aster.'.basename( $module_path ) );
             //view
-            $this->loadViewsFrom($module_path.'/resources/views', 'aster');
+            $this->loadViewsFrom($module_path.'/resources/views', 'aster.'.basename( $module_path ) );
             //migration
             $this->loadMigrationsFrom($module_path . '/database/migrations' );
             //route

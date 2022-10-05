@@ -66,6 +66,7 @@ class Route{
     }
 
     public function get_model_route_name ( $model, $context = 'browse', $action_method, $admin = false ) {
+        //format = admin.model.browse.post
         $name = ( $admin ? 'admin.' : '' ) . $model . '.' . $context;
         if ( $action_method != 'get' ) {
             $name .= '.' . $action_method;

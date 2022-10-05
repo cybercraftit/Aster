@@ -1,6 +1,6 @@
 <?php
 
-use Aster\User\Entities\User;
+use Cybercraftit\Aster\Modules\User\Models\Entities\User;
 
 return [
 

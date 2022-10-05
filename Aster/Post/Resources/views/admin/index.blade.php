@@ -8,7 +8,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <a href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Aster\Post\Entities\Post::class, [], 'browse' ) }}">Add Post</a>
+                        <a href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Post::class, [], 'browse' ) }}">Add
+                            Post</a>
                     </div>
                 </div>
             </div>
@@ -17,8 +18,8 @@
                     <h5 class="card-title">Basic Datatable</h5>
                     <div class="table-responsive">
                         <table
-                            id="zero_config"
-                            class="table table-striped table-bordered"
+                                id="zero_config"
+                                class="table table-striped table-bordered"
                         >
                             <thead>
                             <tr>
