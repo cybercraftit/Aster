@@ -3,7 +3,9 @@
 namespace Cybercraftit\Aster\Modules\Post\AdminSystem;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
 use Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin\AdminPostController;
+use Cybercraftit\Aster\Modules\Post\Models\Post;
 
 class Admin{
 
@@ -39,7 +41,7 @@ class Admin{
     }
 
     public function __construct() {
-        $this->register_menu_items();
+        $this->register_models();
     }
 
     public function register_menu_items() {
@@ -65,6 +67,32 @@ class Admin{
             'callback' => function() {
                 echo 'This is post submenu page.';
             }
+        ]);
+    }
+
+    public function register_models() {
+        Model::instance()->register_model( Post::class, [
+            'label' => [ 'singular' => 'Post', 'plural' => 'Posts'],
+            'slug' => 'post',
+            'crud' => [
+                'browse' => function() {},
+                'read' => function() {}
+            ],
+            'admin_crud' => [
+                'browse' => function() {},
+                'read' => function() {},
+                'edit' => function() {},
+                'add' => function() {},
+                'delete' => function() {}
+            ],
+            'admin_access' => [
+                'browse' => 'can_browse',
+                'read' => 'can_read',
+                'edit' => 'can_edit',
+                'add' => 'can_add',
+                'delete' => 'can_delete',
+            ],
+            'admin_menu' => true
         ]);
     }
 }

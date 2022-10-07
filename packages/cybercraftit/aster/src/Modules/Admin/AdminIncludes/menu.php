@@ -128,7 +128,8 @@ class Menu{
             'slug' => '',//Todo: optional, decide later
             'name' => '',
             'label' => 'Posts',
-            'callback' => function() {}
+            'callback' => function() {},
+            'submenu' => false
         ];
         $item = array_merge( $default, $item );
         $this->items[$item['name']] = $item;
@@ -139,7 +140,7 @@ class Menu{
             'url' => '',//Todo: optional, decide later
             'slug' => '',//Todo: optional, decide later
             'name' => '',
-            'label' => 'Posts',
+            'label' => 'Add Post',
             'callback' => function() {}
         ];
         $item = array_merge( $default, $item );

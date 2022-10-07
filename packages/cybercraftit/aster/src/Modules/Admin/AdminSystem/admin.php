@@ -44,16 +44,6 @@ class Admin {
     }
 
     public function register_menu_items() {
-        Menu::instance()->add_menu_page( 'posts', [
-            'label' => 'Posts',
-            'callback' => [ AdminPostController::class, 'index']
-        ]);
-        Menu::instance()->add_submenu_page( 'posts', 'add-post', [
-            'label' => 'Add Post',
-            'callback' => function() {
-                echo 'This is post submenu page.';
-            }
-        ]);
         Menu::instance()->add_menu_page( 'comments', [
             'label' => 'Comments',
             'callback' => function() {
