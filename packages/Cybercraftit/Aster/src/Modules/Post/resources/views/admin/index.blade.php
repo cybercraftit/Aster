@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title">
                         Post
-                        <a href="{{ route( \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route_name( \Cybercraftit\Aster\Modules\Post\Models\Post::class, 'add', 'get', true ) ) }}" class="btn btn-primary">
+                        <a href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Cybercraftit\Aster\Modules\Post\Models\Post::class, 'add', true, 'get' ) }}" class="btn btn-primary">
                             Add New
                         </a>
                     </h5>
