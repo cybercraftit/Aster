@@ -42,7 +42,7 @@ class Route{
 
     }
 
-    public function add_route( $slug, $callback, $name = null ) {
+    public function add_route( $slug, $callback, $name = null, $method = 'get' ) {
         if ( !$name ) {
             $name = $slug;
         }
@@ -50,7 +50,8 @@ class Route{
         $this->routes[$name] = [
             'callback' => $callback,
             'name' => $name,
-            'slug' => $slug
+            'slug' => $slug,
+            'method' => $method
         ];
 
         \Route::get( $slug, $callback )->name( $name );
@@ -78,8 +79,19 @@ class Route{
         return 'admin.'.$slug;
     }
 
-    public function get_model_route( $model, $context = 'browse', $args = [], $admin = false ) {
-        $name = $this->get_model_route_name( $model, $context, $admin );
-        return$this->routes[$name];
+    public function get_model_route_object( $model, $context = 'browse', $admin = false, $action_method = 'get' ) {
+        $name = $this->get_model_route_name( $model, $context, $action_method, $admin );
+        if ( isset( $this->routes[$name] ) ) {
+            return $this->routes[$name];
+        }
+        return false;
+    }
+
+    public function get_model_route( $model, $context = 'browse', $admin = false, $action_method = 'get' ) {
+        $obj = $this->get_model_route_object( $model, $context, $admin, $action_method );
+        if ( $obj ) {
+            return route( $obj['name'] );
+        }
+        return false;
     }
 }

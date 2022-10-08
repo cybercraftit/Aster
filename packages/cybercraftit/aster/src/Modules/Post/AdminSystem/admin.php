@@ -44,32 +44,6 @@ class Admin{
         $this->register_models();
     }
 
-    public function register_menu_items() {
-        //Model::instance()->register_model( Post::class, []);
-        Menu::instance()->add_menu_page( 'posts', [
-            'label' => 'Posts',
-            'callback' => [ AdminPostController::class, 'index']
-        ]);
-        Menu::instance()->add_submenu_page( 'posts', 'add-post', [
-            'label' => 'Add Post',
-            'callback' => function() {
-                echo 'This is post submenu page.';
-            }
-        ]);
-        Menu::instance()->add_menu_page( 'comments', [
-            'label' => 'Comments',
-            'callback' => function() {
-                echo 'This is comments page.';
-            }
-        ]);
-        Menu::instance()->add_submenu_page( 'comments', 'add-comment', [
-            'label' => 'Add Comment',
-            'callback' => function() {
-                echo 'This is post submenu page.';
-            }
-        ]);
-    }
-
     public function register_models() {
         Model::instance()->register_model( Post::class, [
             'label' => [ 'singular' => 'Post', 'plural' => 'Posts'],
@@ -79,7 +53,7 @@ class Admin{
                 'read' => function() {}
             ],
             'admin_crud' => [
-                'browse' => function() {},
+                'browse' => [AdminPostController::class,'index'],
                 'read' => function() {},
                 'edit' => function() {},
                 'add' => function() {},

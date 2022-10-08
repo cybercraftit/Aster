@@ -3,9 +3,9 @@
 namespace Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin;
 
 use Cybercraftit\Aster\Modules\Admin\Http\Controllers\AdminController;
+use Cybercraftit\Aster\Modules\Post\Models\Post;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Post;
 
 class AdminPostController extends AdminController
 {
@@ -16,7 +16,7 @@ class AdminPostController extends AdminController
     public function index()
     {
         $this->data['items'] = Post::paginate( 20 );
-        return view('post::admin.index', [
+        return view('aster.Post::admin.index', [
             'data' => $this->data,
         ] );
     }
