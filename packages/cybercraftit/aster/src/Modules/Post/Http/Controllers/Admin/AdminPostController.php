@@ -25,9 +25,12 @@ class AdminPostController extends AdminController
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create()
+    public function add()
     {
-        return view('post::create');
+
+        return view('aster.Post::admin.add', [
+            'data' => $this->data,
+        ]);
     }
 
     /**
