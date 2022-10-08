@@ -47,16 +47,18 @@ class Admin{
     public function register_models() {
         Model::instance()->register_model( Post::class, [
             'label' => [ 'singular' => 'Post', 'plural' => 'Posts'],
-            'slug' => 'post',
+            'slug' => 'posts',
             'crud' => [
                 'browse' => function() {},
                 'read' => function() {}
             ],
             'admin_crud' => [
                 'browse' => [AdminPostController::class,'index'],
+                'edit' => function() {
+                    echo 'edit page';
+                },
+                'add' => [AdminPostController::class,'add'],
                 'read' => function() {},
-                'edit' => function() {},
-                'add' => function() {},
                 'delete' => function() {}
             ],
             'admin_access' => [
