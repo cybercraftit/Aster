@@ -139,13 +139,13 @@ class Model{
                                 ->name( $route_name );
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
                             break;
-                        default:
+                        /*default:
                             $route_slug = '/' . $args['slug'] . '/' . $action;
                             $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', true );
                             \Route::get( $route_slug, $callback )
                                   ->name( $route_name );
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
-                            break;
+                            break;*/
                     }
                 }
             });
@@ -160,7 +160,7 @@ class Model{
                         $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', false );
                         $browse_route_name = $route_name;
                         \Route::get( $route_slug, $callback )
-                            ->name( $browse_route_name );
+                            ->name( $route_name );
                         Route::instance()->add_route( $route_slug, $callback, $route_name );
                         break;
                     case 'read' :
