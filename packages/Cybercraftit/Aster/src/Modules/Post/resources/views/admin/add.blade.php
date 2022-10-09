@@ -1,4 +1,6 @@
 @extends('aster.Admin::layouts.master')
 @section('content')
-    Hello world
+    <div v-html="d.form">
+
+    </div>
 @endsection

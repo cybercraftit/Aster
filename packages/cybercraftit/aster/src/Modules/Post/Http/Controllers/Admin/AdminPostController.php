@@ -3,9 +3,11 @@
 namespace Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin;
 
 use Cybercraftit\Aster\Modules\Admin\Http\Controllers\AdminController;
+use Cybercraftit\Aster\Modules\Post\Forms\PostForm;
 use Cybercraftit\Aster\Modules\Post\Models\Post;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Kris\LaravelFormBuilder\FormBuilder;
 
 class AdminPostController extends AdminController
 {
@@ -25,8 +27,14 @@ class AdminPostController extends AdminController
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function add()
+    public function add( FormBuilder $form_builder )
     {
+        $form = $form_builder->create(PostForm::class, [
+            'method' => 'POST',
+            'url' => \Cybercraftit\Aster\Modules\Post\AdminIncludes\Post::instance()->get_route( 'add', Post::class, [])
+        ]);
+
+        $this->data['form'] = form($form);
 
         return view('aster.Post::admin.add', [
             'data' => $this->data,
@@ -41,6 +49,7 @@ class AdminPostController extends AdminController
     public function store(Request $request)
     {
         //
+        dd('This is post request to store the item');
     }
 
     /**
