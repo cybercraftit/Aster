@@ -126,7 +126,7 @@ class Model{
                                     case 'post':
                                         $route_slug = '/' . $args['slug'] . '/store';
                                         $route_name = Route::instance()->get_model_route_name( $model, $action, 'post', true );
-                                        \Route::post( $route_slug, $callback['get'] )
+                                        \Route::post( $route_slug, $callback['post'] )
                                               ->name( $route_name );
                                         Route::instance()->add_route( $route_slug, $callback['post'], $route_name );
                                         break;
