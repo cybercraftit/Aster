@@ -3,6 +3,7 @@
 namespace Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin;
 
 use Cybercraftit\Aster\Modules\Admin\Http\Controllers\AdminController;
+use Cybercraftit\Aster\Modules\Post\AdminIncludes\Route;
 use Cybercraftit\Aster\Modules\Post\Forms\PostForm;
 use Cybercraftit\Aster\Modules\Post\Models\Post;
 use Illuminate\Contracts\Support\Renderable;
@@ -31,7 +32,7 @@ class AdminPostController extends AdminController
     {
         $form = $form_builder->create(PostForm::class, [
             'method' => 'POST',
-            'url' => \Cybercraftit\Aster\Modules\Post\AdminIncludes\Post::instance()->get_route( 'add', Post::class, [])
+            'url' => Route::instance()->get_model_route( Post::class, 'add', true, 'post' )
         ]);
 
         $this->data['form'] = form($form);
@@ -49,7 +50,7 @@ class AdminPostController extends AdminController
     public function store(Request $request)
     {
         //
-        dd('This is post request to store the item');
+        dd($request->all());
     }
 
     /**
