@@ -23,6 +23,7 @@ class PostForm extends Form
                 'selected' => 'open',
                 'empty_value' => '=== Select comment status ==='
             ])
+            ->add('submit', 'submit', ['label' => 'Save form'])
         ;
     }
 }
