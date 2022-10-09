@@ -57,7 +57,10 @@ class Admin{
                 'edit' => function() {
                     echo 'edit page';
                 },
-                'add' => [AdminPostController::class,'add'],
+                'add' => [
+                    'get' => [AdminPostController::class,'add'],
+                    'post' => [AdminPostController::class,'store']
+                ],
                 'read' => function() {},
                 'delete' => function() {}
             ],
