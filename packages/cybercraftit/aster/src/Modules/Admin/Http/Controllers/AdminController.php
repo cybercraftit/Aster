@@ -6,9 +6,12 @@ use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\CoreController;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Kris\LaravelFormBuilder\FormBuilderTrait;
 
 class AdminController extends CoreController
 {
+    use FormBuilderTrait;
+
     public function __construct() {
         $menu_items = Menu::instance()->get_menu_items();
         $this->data['menu_items'] = $menu_items;
