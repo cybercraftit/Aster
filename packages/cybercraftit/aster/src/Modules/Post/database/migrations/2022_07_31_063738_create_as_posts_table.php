@@ -26,8 +26,8 @@ class CreateAsPostsTable extends Migration
             $table->string('ping_status', 20)->default('open');
             $table->string('post_password')->default('');
             $table->string('post_name', 200)->default('')->index('post_name');
-            $table->text('to_ping');
-            $table->text('pinged');
+            $table->text('to_ping')->nullable();
+            $table->text('pinged')->nullable();
             $table->dateTime('post_modified')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('post_modified_gmt')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->longText('post_content_filtered');
