@@ -9,6 +9,7 @@ use Cybercraftit\Aster\Modules\Post\Models\Post;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
+use Kris\LaravelFormBuilder\FormBuilderTrait;
 
 class AdminPostController extends AdminController
 {
@@ -49,8 +50,12 @@ class AdminPostController extends AdminController
      */
     public function store(Request $request)
     {
-        //
-        dd($request->all());
+        $form = $this->form(PostForm::class);
+        if ( ! $form->isValid() ) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+        Post::create($request->all());
+        return redirect()->route( Route::instance()->get_model_route_name( Post::class, 'browse', 'get', true ) );
     }
 
     /**
