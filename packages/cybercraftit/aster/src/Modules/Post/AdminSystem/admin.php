@@ -3,6 +3,7 @@
 namespace Cybercraftit\Aster\Modules\Post\AdminSystem;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
 use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
 use Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin\AdminPostController;
 use Cybercraftit\Aster\Modules\Post\Models\Post;
@@ -53,7 +54,7 @@ class Admin{
                 'read' => function() {}
             ],
             'admin_crud' => [
-                'browse' => [AdminPostController::class,'index'],
+                'browse' => [AdminItemController::class,'index'],
                 'edit' => function() {
                     echo 'edit page';
                 },
