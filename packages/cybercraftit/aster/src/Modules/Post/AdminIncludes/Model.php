@@ -74,6 +74,10 @@ class Model{
         //add crud routes
         if ( $args['admin_crud'] ) {
             \Route::prefix('admin')->group(function() use ( $model, $args ) {
+                //set model as active model
+                global $as_model;
+                $as_model = $model;
+
                 //create admin crud
                 foreach ( $args['admin_crud'] as $action => $callback ) {
                     switch ( $action ) {
@@ -81,53 +85,68 @@ class Model{
                             $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', true );
                             $browse_route_name = $route_name;
                             $route_slug = '/' . $args['slug'];
-                            \Route::get( $route_slug, $callback )
+
+                            \Route::get( '/posts', $callback)
                                 ->name( $route_name );
+
                             if ( $args['admin_menu'] ) {
                                 Menu::instance()->add_menu_item([
                                     'name' => $route_name
                                 ]);
                             }
+
                             //add route to route list
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
                             break;
                         case 'read' :
                             $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', true );
                             $route_slug = '/' . $args['slug'] . '/{id}';
+
                             \Route::get( $route_slug, $callback )
                                 ->name( $route_name );
+
                             //add route to route list
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
                             break;
                         case 'edit' :
                             $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', true );
                             $route_slug = '/' . $args['slug'] . '/{id}/edit';
+
                             \Route::get( $route_slug, $callback )
                                 ->name( $route_name );
+
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
 
                             $route_slug = '/' . $args['slug'] . '/{id}/update';
                             $route_name = Route::instance()->get_model_route_name( $model, $action, 'post', true );
+
                             \Route::post( $route_slug, $callback )
                                 ->name( $route_name );
+
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
+
                             break;
                         case 'add' :
                             foreach ( $callback as $method => $callback_func ) {
                                 switch ( $method ) {
                                     case 'get' :
+
                                         $route_slug = '/' . $args['slug'] . '/add';
                                         $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', true );
                                         $add_route_name = $route_name;
+
                                         \Route::get( $route_slug, $callback['get'] )
                                               ->name( $route_name );
+
                                         Route::instance()->add_route( $route_slug, $callback['get'], $route_name );
                                         break;
                                     case 'post':
                                         $route_slug = '/' . $args['slug'] . '/store';
                                         $route_name = Route::instance()->get_model_route_name( $model, $action, 'post', true );
+
                                         \Route::post( $route_slug, $callback['post'] )
                                               ->name( $route_name );
+
                                         Route::instance()->add_route( $route_slug, $callback['post'], $route_name );
                                         break;
                                 }
@@ -146,13 +165,13 @@ class Model{
                                 ->name( $route_name );
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
                             break;
-                        /*default:
+                        default:
                             $route_slug = '/' . $args['slug'] . '/' . $action;
                             $route_name = Route::instance()->get_model_route_name( $model, $action, 'get', true );
                             \Route::get( $route_slug, $callback )
                                   ->name( $route_name );
                             Route::instance()->add_route( $route_slug, $callback, $route_name );
-                            break;*/
+                            break;
                     }
                 }
             });
