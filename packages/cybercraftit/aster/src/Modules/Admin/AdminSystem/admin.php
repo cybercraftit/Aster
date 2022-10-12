@@ -44,7 +44,7 @@ class Admin {
     }
 
     public function register_menu_items() {
-        Menu::instance()->add_menu_page( 'comments', [
+        /*Menu::instance()->add_menu_page( 'comments', [
             'label' => 'Comments',
             'callback' => function() {
                 echo 'This is comments page.';
@@ -55,7 +55,7 @@ class Admin {
             'callback' => function() {
                 echo 'This is post submenu page.';
             }
-        ]);
+        ]);*/
     }
 }
 
