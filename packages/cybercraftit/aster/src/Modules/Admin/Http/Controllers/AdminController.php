@@ -13,6 +13,7 @@ class AdminController extends CoreController
     use FormBuilderTrait;
 
     public function __construct() {
+        parent::__construct();
         $menu_items = Menu::instance()->get_menu_items();
         $this->data['menu_items'] = $menu_items;
     }
