@@ -9,6 +9,12 @@ use Illuminate\Routing\Controller;
 class CoreController extends Controller
 {
     protected $data;
+    protected $model;
+
+    public function __construct() {
+        global $as_model;
+        $this->model = $as_model;
+    }
 
     /**
      * Show the form for creating a new resource.
