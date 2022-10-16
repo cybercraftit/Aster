@@ -42,7 +42,6 @@ class Admin{
     }
 
     public function __construct() {
-        $this->register_models();
     }
 
     public function register_models() {
