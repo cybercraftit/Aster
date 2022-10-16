@@ -54,16 +54,40 @@ class Admin{
                 'read' => function() {}
             ],
             'admin_crud' => [
-                'browse' => [AdminItemController::class,'index'],
-                'edit' => function() {
-                    echo 'edit page';
-                },
-                'add' => [
-                    'get' => [AdminPostController::class,'add'],
-                    'post' => [AdminPostController::class,'store']
+                'browse' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'index'],
+                        'params' => [ 'a' => 'Hello world']
+                    ]
                 ],
-                'read' => function() {},
-                'delete' => function() {}
+                'edit' => [
+                    'get' => [
+                        'callback' => function() {
+                            echo 'edit page';
+                        }
+                    ]
+                ],
+                'add' => [
+                    'get' => [
+                        'callback' => [AdminPostController::class,'add'],
+                        'params' => []
+                    ],
+                    'post' => [
+                        'callback' => [AdminPostController::class,'store'],
+                        'params' => [],
+                        'forms' => []
+                    ]
+                ],
+                'read' => [
+                    'get' => [
+                        'callback' => function() {}
+                    ]
+                ],
+                'delete' => [
+                    'delete' => [
+                        'callback' => function() {}
+                    ]
+                ]
             ],
             'admin_access' => [
                 'browse' => 'can_browse',

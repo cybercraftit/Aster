@@ -10,10 +10,15 @@ class CoreController extends Controller
 {
     protected $data;
     protected $model;
+    protected $params;
+    protected $forms;
 
     public function __construct() {
-        global $as_model;
+        global $as_model, $as_params, $as_forms;
         $this->model = $as_model;
+        $this->params = $as_params;
+        $this->forms = $as_forms;
+        $this->data['params'] = $this->params;
     }
 
     /**
