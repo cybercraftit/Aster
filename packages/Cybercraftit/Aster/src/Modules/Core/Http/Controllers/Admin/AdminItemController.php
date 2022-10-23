@@ -3,14 +3,12 @@
 namespace Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin;
 
 use Cybercraftit\Aster\Modules\Admin\Http\Controllers\AdminController;
-use Cybercraftit\Aster\Modules\Core\Http\Controllers\CoreController;
+use Cybercraftit\Aster\Modules\Core\Forms\ItemForm;
+use Cybercraftit\Aster\Modules\Core\Includes\Form;
 use Cybercraftit\Aster\Modules\Post\AdminIncludes\Route;
 use Cybercraftit\Aster\Modules\Post\Forms\PostForm;
-use Cybercraftit\Aster\Modules\Post\Models\Post;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Kris\LaravelFormBuilder\FormBuilder;
-use Kris\LaravelFormBuilder\FormBuilderTrait;
 
 class AdminItemController extends AdminController
 {
@@ -18,9 +16,9 @@ class AdminItemController extends AdminController
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $this->data['items'] = $this->model::paginate( 20 );
+        $this->data['items'] = $request->model::paginate( 20 );
         return view('aster.Post::admin.index', [
             'data' => $this->data,
         ] );
@@ -30,14 +28,17 @@ class AdminItemController extends AdminController
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function add( FormBuilder $form_builder )
+    public function add(Request $request)
     {
-        $form = $form_builder->create(PostForm::class, [
-            'method' => 'POST',
-            'url' => Route::instance()->get_model_route( $this->model::class, 'add', true, 'post' )
-        ]);
 
-        $this->data['form'] = form($form);
+        if ( $request->forms ) {
+            foreach ( $request->forms as $k => $form_name ) {
+                $this->data['forms'][$form_name] = Form::instance()->get_form( $form_name, [
+                    'method' => 'POST',
+                    'url' => Route::instance()->get_model_route( $request->model, 'add', true, 'post' )
+                ] );
+            }
+        }
 
         return view('aster.Post::admin.add', [
             'data' => $this->data,
@@ -51,12 +52,15 @@ class AdminItemController extends AdminController
      */
     public function store(Request $request)
     {
-        $form = $this->form(PostForm::class);
-        if ( ! $form->isValid() ) {
-            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        if ( isset( $request->form_name ) ) {
+            $result = Form::instance()->is_valid( $request->form_name, $request );
+            if ( ! $result['success'] ) {
+                return redirect()->back()->withErrors( $result['errors'] )->withInput();
+            }
         }
-        $this->model::create($request->all());
-        return redirect()->route( Route::instance()->get_model_route_name( $this->model::class, 'browse', 'get', true ) );
+
+        $request->model::create($request->all());
+        return redirect()->route( Route::instance()->get_model_route_name( $request->model, 'browse', 'get', true ) );
     }
 
     /**
@@ -64,7 +68,7 @@ class AdminItemController extends AdminController
      * @param int $id
      * @return Renderable
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         return view('post::show');
     }
@@ -74,7 +78,7 @@ class AdminItemController extends AdminController
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         return view('post::edit');
     }
@@ -95,7 +99,7 @@ class AdminItemController extends AdminController
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         //
     }

@@ -9,7 +9,6 @@ use Cybercraftit\Aster\Modules\Post\Models\Post;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
-use Kris\LaravelFormBuilder\FormBuilderTrait;
 
 class AdminPostController extends AdminController
 {

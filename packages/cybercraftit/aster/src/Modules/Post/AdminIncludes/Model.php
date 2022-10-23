@@ -3,6 +3,7 @@
 namespace Cybercraftit\Aster\Modules\Post\AdminIncludes;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
+use Illuminate\Http\Request;
 
 class Model{
 
@@ -83,8 +84,6 @@ class Model{
 
             \Route::prefix('admin')->group(function() use ( $model, $args, $slugs_array ) {
                 //set model as active model
-                global $as_model, $as_params, $as_forms;
-                $as_model = $model;
 
                 //create admin crud
                 foreach ( $args['admin_crud'] as $context => $context_array ) {
@@ -101,11 +100,18 @@ class Model{
                             $route_slug = '/' . $args['slug'];
                         }
 
-                        $as_params = $action_data['params'];
-                        $as_forms = $action_data['forms'];
+                        \Route::{$action_method}( $route_slug, function (Request $request) use ( $model, $action_data ) {
 
-                        \Route::{$action_method}( $route_slug, $action_data['callback'] )
-                              ->name( $route_name );
+                            $request->merge(['model' => $model, 'params' => $action_data['params'], 'forms' => $action_data['forms'] ] );
+
+                            if ( is_array( $action_data['callback'] ) ) {
+                                $callback_class = $action_data['callback'][0];
+                                $callback_method = $action_data['callback'][1];
+                                return call_user_func_array( [(new $callback_class), $callback_method], [$request]);
+                            } else {
+                                return call_user_func_array( $action_data['callback'], [$request]);
+                            }
+                        } )->name( $route_name );
 
                         if ( $context == 'browse') {
                             $browse_route_name = $route_name;

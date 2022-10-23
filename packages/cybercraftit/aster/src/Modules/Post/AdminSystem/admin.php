@@ -4,6 +4,7 @@ namespace Cybercraftit\Aster\Modules\Post\AdminSystem;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
+use Cybercraftit\Aster\Modules\Core\Includes\Form;
 use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
 use Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin\AdminPostController;
 use Cybercraftit\Aster\Modules\Post\Models\Post;
@@ -42,6 +43,7 @@ class Admin{
     }
 
     public function __construct() {
+        $this->register_forms();
     }
 
     public function register_models() {
@@ -68,13 +70,13 @@ class Admin{
                 ],
                 'add' => [
                     'get' => [
-                        'callback' => [AdminPostController::class,'add'],
-                        'params' => []
+                        'callback' => [AdminItemController::class,'add'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
                     ],
                     'post' => [
-                        'callback' => [AdminPostController::class,'store'],
-                        'params' => [],
-                        'forms' => []
+                        'callback' => [AdminItemController::class,'store'],
+                        'params' => []
                     ]
                 ],
                 'read' => [
@@ -97,6 +99,51 @@ class Admin{
             ],
             'admin_menu' => true
         ]);
+    }
+
+    function register_forms() {
+        Form::instance()->register_form( 'admin.add_post',
+            [
+                'post_title' => [
+                    'type' => 'text',
+                    'label' => 'Post title',
+                    'rules' => 'required|min:5',
+                    'error_messages' => [
+                        'post_title.required' => 'The title field is mandatory.'
+                    ]
+                ],
+                'post_content' => [
+                    'type' => 'textarea',
+                    'label' => 'Post content',
+                    'rules' => 'required|max:5000',
+                    'error_messages' => [
+                        'post_content.required' => 'The content field is mandatory.'
+                    ]
+                ],
+                'post_excerpt' => [
+                    'type' => 'textarea',
+                    'label' => 'Post excerpt',
+                    'rules' => 'required|max:1000',
+                    'error_messages' => [
+                        'post_excerpt.required' => 'The excerpt field is mandatory.'
+                    ]
+                ],
+                'post_status' => [
+                    'type' => 'select',
+                    'choices' => ['draft' => 'Draft', 'publish' => 'Publish', 'pending' => 'Pending Review', 'private' => 'Private', 'trash' => 'Trash'],
+                    'selected' => 'draft',
+                    'empty_value' => '=== Select post status ==='
+                ],
+                'comment_status' => [
+                    'type' => 'select',
+                    'choices' => ['open' => 'Allow Comments', 'close' => 'Do Not Allow Comments'],
+                    'selected' => 'open',
+                    'empty_value' => '=== Select comment status ==='
+                ],
+                'submit' => [ 'type' => 'submit', 'label' => 'Save form']
+
+            ]
+        );
     }
 }
 
