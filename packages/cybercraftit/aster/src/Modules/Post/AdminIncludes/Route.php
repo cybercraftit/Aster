@@ -81,15 +81,19 @@ class Route{
 
     public function get_model_route_object( $model, $context = 'browse', $admin = false, $action_method = 'get' ) {
         $name = $this->get_model_route_name( $model, $context, $action_method, $admin );
+
         if ( isset( $this->routes[$name] ) ) {
             return $this->routes[$name];
         }
         return false;
     }
 
-    public function get_model_route( $model, $context = 'browse', $admin = false, $action_method = 'get' ) {
+    public function get_model_route( $model, $context = 'browse', $admin = false, $action_method = 'get', $param = [] ) {
         $obj = $this->get_model_route_object( $model, $context, $admin, $action_method );
         if ( $obj ) {
+            if ( ! empty( $param ) ) {
+                return route( $obj['name'], $param );
+            }
             return route( $obj['name'] );
         }
         return false;

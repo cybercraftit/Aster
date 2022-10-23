@@ -18,7 +18,7 @@ class AdminItemController extends AdminController
      */
     public function index(Request $request)
     {
-        $this->data['items'] = $request->model::paginate( 20 );
+        $this->data['items'] = $request->model::paginate( 2 );
         return view('aster.Post::admin.index', [
             'data' => $this->data,
         ] );
