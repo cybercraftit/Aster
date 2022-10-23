@@ -1,7 +1,13 @@
 <?php
 namespace Cybercraftit\Aster\Modules\Core\Includes;
 
+use Cybercraftit\Aster\Modules\Core\Forms\ItemForm;
+use Cybercraftit\Aster\Modules\Post\AdminIncludes\Route;
+use Kris\LaravelFormBuilder\FormBuilderTrait;
+
 class Form{
+
+    use FormBuilderTrait;
 
     /**
      * Forms will be stored as array
@@ -45,9 +51,25 @@ class Form{
         $this->forms[$form_name] = $fields;
     }
 
-    public function get_form( $form_name ) {
+    public function get_form_fields( $form_name ) {
         if ( isset( $this->forms[$form_name] ) ) {
             return $this->forms[$form_name];
+        }
+        return false;
+    }
+
+    public function get_form( $form_name, $params = [] ) {
+        $default = [
+            'method' => 'POST',
+            'url' => ''
+        ];
+        $params = array_merge( $default, $params );
+
+        if ( $form_fields = $this->get_form_fields( $form_name ) ) {
+            $item_form = new ItemForm();
+            $item_form->set_form( $form_name, $form_fields );
+            $form = $this->form( ItemForm::class, $params );
+            return form( $form );
         }
         return false;
     }
@@ -56,6 +78,33 @@ class Form{
         if ( $form = $this->get_form( $form_name ) ) {
 
         }
+    }
+
+    public function is_valid( $form_name, $form_vals ) {
+        //set formfields form ItemForm
+        if ( $form_fields = $this->get_form_fields( $form_name ) ) {
+
+            $item_form = new ItemForm();
+            $item_form->set_form( $form_name, $form_fields );
+            $form = $this->form(ItemForm::class);
+
+            if ( ! $form->isValid() ) {
+                return [
+                    'errors' => $form->getErrors(),
+                    'success' => false
+                ];
+            } else {
+                return [
+                    'errors' => null,
+                    'success' => true
+                ];
+            }
+        }
+
+        return [
+            'errors' => null,
+            'success' => false
+        ];
     }
 
 
