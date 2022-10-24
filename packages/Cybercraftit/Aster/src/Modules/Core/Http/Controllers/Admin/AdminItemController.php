@@ -103,7 +103,15 @@ class AdminItemController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        if ( isset( $request->form_name ) ) {
+            $result = Form::instance()->is_valid( $request->form_name, $request );
+            if ( ! $result['success'] ) {
+                return redirect()->back()->withErrors( $result['errors'] )->withInput();
+            }
+        }
+
+        $request->model::where( 'id', $id )->update($request->all());
+        return redirect()->route( Route::instance()->get_model_route_name( $request->model, 'browse', 'get', true ) );
     }
 
     /**
