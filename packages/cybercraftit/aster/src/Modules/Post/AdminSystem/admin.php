@@ -63,9 +63,13 @@ class Admin{
                 ],
                 'edit' => [
                     'get' => [
-                        'callback' => function() {
-                            echo 'edit page';
-                        }
+                        'callback' => [AdminItemController::class,'edit'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminItemController::class,'update'],
+                        'forms' => [ 'admin.add_post' ]
                     ]
                 ],
                 'add' => [
@@ -76,7 +80,7 @@ class Admin{
                     ],
                     'post' => [
                         'callback' => [AdminItemController::class,'store'],
-                        'params' => []
+                        'forms' => [ 'admin.add_post' ]
                     ]
                 ],
                 'read' => [

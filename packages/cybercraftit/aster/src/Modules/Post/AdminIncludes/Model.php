@@ -3,6 +3,7 @@
 namespace Cybercraftit\Aster\Modules\Post\AdminIncludes;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
 use Illuminate\Http\Request;
 
 class Model{
@@ -100,16 +101,15 @@ class Model{
                             $route_slug = '/' . $args['slug'];
                         }
 
-                        \Route::{$action_method}( $route_slug, function (Request $request) use ( $model, $action_data ) {
-
+                        \Route::{$action_method}( $route_slug, function (Request $request) use ( $model, $action_data, $context, $route_slug ) {
                             $request->merge(['model' => $model, 'params' => $action_data['params'], 'forms' => $action_data['forms'] ] );
 
                             if ( is_array( $action_data['callback'] ) ) {
                                 $callback_class = $action_data['callback'][0];
                                 $callback_method = $action_data['callback'][1];
-                                return call_user_func_array( [(new $callback_class), $callback_method], [$request]);
+                                return call_user_func_array( [(new $callback_class), $callback_method], array_merge([$request],request()->route()->parameters));
                             } else {
-                                return call_user_func_array( $action_data['callback'], [$request]);
+                                return call_user_func_array( $action_data['callback'], array_merge([$request],request()->route()->parameters));
                             }
                         } )->name( $route_name );
 

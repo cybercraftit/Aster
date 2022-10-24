@@ -80,7 +80,19 @@ class AdminItemController extends AdminController
      */
     public function edit(Request $request, $id)
     {
-        return view('post::edit');
+        if ( $request->forms ) {
+            foreach ( $request->forms as $k => $form_name ) {
+                $this->data['forms'][$form_name] = Form::instance()->get_form( $form_name, [
+                    'method' => 'POST',
+                    'url' => Route::instance()->get_model_route( $request->model, 'edit', true, 'post', [ 'id' => $id ] ),
+                    'model' => $request->model::find($id)
+                ] );
+            }
+        }
+
+        return view('aster.Post::admin.add', [
+            'data' => $this->data,
+        ]);
     }
 
     /**

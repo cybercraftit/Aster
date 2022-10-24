@@ -61,7 +61,8 @@ class Form{
     public function get_form( $form_name, $params = [] ) {
         $default = [
             'method' => 'POST',
-            'url' => ''
+            'url' => '',
+            'model' => ''
         ];
         $params = array_merge( $default, $params );
 
