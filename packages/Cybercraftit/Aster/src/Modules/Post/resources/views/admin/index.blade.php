@@ -37,7 +37,13 @@
                                     <td>$320,800</td>
                                     <td>
                                         <a class="btn btn-success" href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Cybercraftit\Aster\Modules\Post\Models\Post::class, 'edit', true, 'get', [ $item->ID] ) }}">Edit</a>
-                                        <a class="btn btn-danger" href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Cybercraftit\Aster\Modules\Post\Models\Post::class, 'delete', true, 'delete' ) }}">Delete</a>
+                                        <form method="post" action="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Cybercraftit\Aster\Modules\Post\Models\Post::class, 'delete', true, 'delete', [ $item->ID] ) }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <input type="submit" name="delete" value="Delete"  class="btn btn-danger">
+{{--                                            <a href="">Delete</a>--}}
+                                        </form>
+
                                     </td>
                                 </tr>
                             @endforeach

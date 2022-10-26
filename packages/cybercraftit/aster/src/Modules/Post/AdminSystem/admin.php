@@ -90,7 +90,7 @@ class Admin{
                 ],
                 'delete' => [
                     'delete' => [
-                        'callback' => function() {}
+                        'callback' => [AdminItemController::class,'destroy'],
                     ]
                 ]
             ],

@@ -80,7 +80,7 @@ class Model{
                 'read' => '/' . $args['slug'] . '/{id}',
                 'edit' => '/' . $args['slug'] . '/{id}/edit',
                 'add' => '/' . $args['slug'] . '/add',
-                'delete' => '/' . $args['slug'] . '/delete',
+                'delete' => '/' . $args['slug'] . '/{id}/delete',
             ];
 
             \Route::prefix('admin')->group(function() use ( $model, $args, $slugs_array ) {

@@ -121,6 +121,8 @@ class AdminItemController extends AdminController
      */
     public function destroy(Request $request, $id)
     {
-        //
+        if ( $request->model::find($id)->delete() ) {
+            return redirect()->route( Route::instance()->get_model_route_name( $request->model, 'browse', 'get', true ) );
+        }
     }
 }
