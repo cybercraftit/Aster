@@ -110,7 +110,7 @@ class AdminItemController extends AdminController
             }
         }
 
-        $request->model::where( 'id', $id )->update($request->all());
+        $request->model::find( $id )->fill($request->all())->save();
         return redirect()->route( Route::instance()->get_model_route_name( $request->model, 'browse', 'get', true ) );
     }
 
