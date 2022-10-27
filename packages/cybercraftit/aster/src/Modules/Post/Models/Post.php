@@ -20,6 +20,10 @@ class Post extends Model
     protected $primaryKey = 'ID';
     public $timestamps = false;
 
+    public function scopePostType( $query, $post_type ) {
+        return $query->where( 'post_type', $post_type );
+    }
+
     public function author() {
         return $this->belongsTo( User::class, 'post_author', 'ID' );
     }
