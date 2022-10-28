@@ -66,9 +66,13 @@ class Route{
         ];
     }
 
-    public function get_model_route_name ( $model, $context = 'browse', $action_method, $admin = false ) {
+    public function get_model_route_name ( $model, $context = 'browse', $action_method, $admin = false, $param = [] ) {
+        $default = [
+            'suffix' => ''
+        ];
+        $param = array_merge( $default, $param );
         //format = admin.model.browse.post
-        $name = ( $admin ? 'admin.' : '' ) . $model . '.' . $context;
+        $name = ( $admin ? 'admin.' : '' ) . $model . '.' . ( $param['suffix'] ? $param['suffix'] . '.' : '' ) . $context;
         if ( $action_method != 'get' ) {
             $name .= '.' . $action_method;
         }
