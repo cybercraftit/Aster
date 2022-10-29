@@ -2,26 +2,24 @@
 namespace Cybercraftit\Aster\Modules\Post\Models;
 
 use Cybercraftit\Aster\Modules\User\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends PostRoot
 {
-    use HasFactory;
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
 
-    protected $fillable = [
-        'post_title',
-        'post_content',
-        'post_excerpt',
-        'post_status',
-        'comment_status'
-    ];
-    protected $table = 'posts';
-    protected $primaryKey = 'ID';
-    public $timestamps = false;
-
-    public function scopePostType( $query, $post_type ) {
-        return $query->where( 'post_type', $post_type );
+        static::addGlobalScope('post_type', function (Builder $builder) {
+            $builder->where('post_type', 'post' );
+        });
     }
 
     public function author() {
