@@ -7,6 +7,7 @@ use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
 use Cybercraftit\Aster\Modules\Core\Includes\Form;
 use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
 use Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin\AdminPostController;
+use Cybercraftit\Aster\Modules\Post\Models\Page;
 use Cybercraftit\Aster\Modules\Post\Models\Post;
 
 class Admin{
@@ -50,6 +51,63 @@ class Admin{
         Model::instance()->register_model( Post::class, [
             'label' => [ 'singular' => 'Post', 'plural' => 'Posts'],
             'slug' => 'posts',
+            'crud' => [
+                'browse' => function() {},
+                'read' => function() {}
+            ],
+            'admin_crud' => [
+                'browse' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'index'],
+                        'params' => [ 'a' => 'Hello world']
+                    ]
+                ],
+                'edit' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'edit'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminItemController::class,'update'],
+                        'forms' => [ 'admin.add_post' ]
+                    ]
+                ],
+                'add' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'add'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminItemController::class,'store'],
+                        'forms' => [ 'admin.add_post' ]
+                    ]
+                ],
+                'read' => [
+                    'get' => [
+                        'callback' => function() {}
+                    ]
+                ],
+                'delete' => [
+                    'delete' => [
+                        'callback' => [AdminItemController::class,'destroy'],
+                    ]
+                ]
+            ],
+            'admin_access' => [
+                'browse' => 'can_browse',
+                'read' => 'can_read',
+                'edit' => 'can_edit',
+                'add' => 'can_add',
+                'delete' => 'can_delete',
+            ],
+            'admin_menu' => true
+        ]);
+        //page
+        Model::instance()->register_model( Page::class, [
+            'label' => [ 'singular' => 'Page', 'plural' => 'Pages'],
+            'slug' => 'pages',
             'crud' => [
                 'browse' => function() {},
                 'read' => function() {}
