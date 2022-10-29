@@ -202,4 +202,29 @@ class Model{
             }
         }
     }
+
+    /**
+     * @param $model
+     *
+     * @return false|mixed
+     */
+    public function get_model_data( $model ) {
+        if ( isset( $this->registered_models[$model] ) ) {
+            return $this->registered_models[$model];
+        }
+        return false;
+    }
+
+    /**
+     * @param $model
+     * @param $singular
+     *
+     * @return false|mixed
+     */
+    public function get_model_label( $model, $singular = true ) {
+        if ( $this->get_model_data( $model ) ) {
+            return $singular ? $this->get_model_data( $model )['label']['singular'] : $this->get_model_data( $model )['label']['plural'];
+        }
+        return  false;
+    }
 }

@@ -5,8 +5,8 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">
-                        Post
-                        <a href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( \Cybercraftit\Aster\Modules\Post\Models\Post::class, 'add', true, 'get' ) }}" class="btn btn-primary">
+                        {{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Model::instance()->get_model_label( request()->model, false ) }}
+                        <a href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( request()->model, 'add', true, 'get' ) }}" class="btn btn-primary">
                             Add New
                         </a>
                     </h5>
