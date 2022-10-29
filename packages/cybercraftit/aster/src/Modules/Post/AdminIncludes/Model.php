@@ -4,6 +4,7 @@ namespace Cybercraftit\Aster\Modules\Post\AdminIncludes;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
+use Cybercraftit\Aster\Modules\Post\Models\Page;
 use Illuminate\Http\Request;
 
 class Model{
@@ -117,13 +118,15 @@ class Model{
                             $browse_route_name = $route_name;
                             if ( $args['admin_menu'] ) {
                                 Menu::instance()->add_menu_item([
-                                    'name' => $route_name
+                                    'name' => $route_name,
+                                    'label' => $args['label']['plural']
                                 ]);
                             }
                         } elseif ( $context == 'add' ) {
                             if ( $args['admin_menu'] ) {
                                 Menu::instance()->add_menu_item([
-                                    'name' => $route_name
+                                    'name' => $route_name,
+                                    'label' => 'Add ' . $args['label']['singular']
                                 ]);
                             }
                         }
