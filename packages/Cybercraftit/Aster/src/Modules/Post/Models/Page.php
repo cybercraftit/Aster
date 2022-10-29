@@ -17,5 +17,9 @@ class Page extends PostRoot
         static::addGlobalScope('post_type', function (Builder $builder) {
             $builder->where('post_type', 'page' );
         });
+
+        self::creating(function($model) {
+            $model->post_type = 'page';
+        });
     }
 }
