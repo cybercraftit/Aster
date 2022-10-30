@@ -114,6 +114,11 @@ class Model{
                             }
                         } )->name( $route_name );
 
+                        //add route to route list
+                        Route::instance()->add_route( $route_slug, $action_data['callback'], $route_name );
+                    }
+
+                    if ( $args['admin_menu'] ) {
                         if ( $context == 'browse') {
                             $browse_route_name = $route_name;
                             if ( $args['admin_menu'] ) {
@@ -124,15 +129,12 @@ class Model{
                             }
                         } elseif ( $context == 'add' ) {
                             if ( $args['admin_menu'] ) {
-                                Menu::instance()->add_menu_item([
+                                Menu::instance()->add_submenu_item( $browse_route_name, [
                                     'name' => $route_name,
                                     'label' => 'Add ' . $args['label']['singular']
                                 ]);
                             }
                         }
-
-                        //add route to route list
-                        Route::instance()->add_route( $route_slug, $action_data['callback'], $route_name );
                     }
                 }
             });
