@@ -40,7 +40,7 @@ class PostRoot extends Model
         });
 
         self::creating(function($model) {
-            $model->post_type = 'page';
+            $model->post_type = get_called_class()::$post_type;
         });
     }
 
