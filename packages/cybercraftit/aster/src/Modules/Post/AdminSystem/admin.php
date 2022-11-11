@@ -4,7 +4,10 @@ namespace Cybercraftit\Aster\Modules\Post\AdminSystem;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
+use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminTaxonomyController;
 use Cybercraftit\Aster\Modules\Core\Includes\Form;
+use Cybercraftit\Aster\Modules\Core\Includes\Taxonomy;
+use Cybercraftit\Aster\Modules\Core\Models\Category;
 use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
 use Cybercraftit\Aster\Modules\Post\Http\Controllers\Admin\AdminPostController;
 use Cybercraftit\Aster\Modules\Post\Models\Page;
@@ -152,15 +155,69 @@ class Admin{
                     ]
                 ]
             ],
-            'admin_access' => [
+            /*'admin_access' => [
                 'browse' => 'can_browse',
                 'read' => 'can_read',
                 'edit' => 'can_edit',
                 'add' => 'can_add',
                 'delete' => 'can_delete',
-            ],
+            ],*/
             'admin_menu' => true
         ]);
+
+        Taxonomy::instance()->register_taxonomy( Category::class, Post::class, [
+            "hierarchical" => true,
+            "label" => "Category",
+            "singular_label" => "Category",
+            'query_var' => true,
+            'rewrite' => array( 'slug' => 'category', 'with_front' => false ),
+            'public' => true,
+            'show_ui' => true,
+            'show_tagcloud' => true, //later
+            '_builtin' => false, //later
+            'show_in_nav_menus' => false,
+            //additional
+            'admin_crud' => [
+                'browse' => [
+                    'get' => [
+                        'callback' => [AdminTaxonomyController::class,'index'],
+                        'params' => [ 'a' => 'Hello world']
+                    ]
+                ],
+                'edit' => [
+                    'get' => [
+                        'callback' => [AdminTaxonomyController::class,'edit'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminTaxonomyController::class,'update'],
+                        'forms' => [ 'admin.add_post' ]
+                    ]
+                ],
+                'add' => [
+                    'get' => [
+                        'callback' => [AdminTaxonomyController::class,'add'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminTaxonomyController::class,'store'],
+                        'forms' => [ 'admin.add_post' ]
+                    ]
+                ],
+                'read' => [
+                    'get' => [
+                        'callback' => function() {}
+                    ]
+                ],
+                'delete' => [
+                    'delete' => [
+                        'callback' => [AdminItemController::class,'destroy'],
+                    ]
+                ]
+            ],
+        ] );
     }
 
     function register_forms() {
