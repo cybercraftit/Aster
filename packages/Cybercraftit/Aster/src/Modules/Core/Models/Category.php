@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Category extends Term
 {
-    protected static $taxonomy = 'category';
+    public static $taxonomy = 'category';
 }
