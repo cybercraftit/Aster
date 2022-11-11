@@ -1,6 +1,7 @@
 <?php
 namespace Cybercraftit\Aster\Modules\Core\Includes;
 
+use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminTaxonomyController;
 use Cybercraftit\Aster\Modules\Post\AdminIncludes\Model;
@@ -162,6 +163,11 @@ class Taxonomy{
         Model::instance()->register_model( $tax_model, $model_args );
 
         //adding submenu to corresponding model
-        //Route::instance()->get_model_route_name( $model, $context, $action_method, true );
+        $route_name = Route::instance()->get_model_route_name( $tax_model, 'browse', 'get', true );
+        $parent_route_name = Route::instance()->get_model_route_name( $model, 'browse', 'get', true );
+        Menu::instance()->add_submenu_item( $parent_route_name, [
+            'name' => $route_name,
+            'label' => $args['label']
+        ] );
     }
 }
