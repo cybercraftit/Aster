@@ -53,19 +53,51 @@ class Model{
                 'read' => function() {}
             ],
             'admin_crud' => [
-                'browse' => function() {},
-                'read' => function() {},
-                'edit' => function() {},
-                'add' => function() {},
-                'delete' => function() {}
+                'browse' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'index'],
+                        'params' => [ 'a' => 'Hello world']
+                    ]
+                ],
+                'edit' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'edit'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminItemController::class,'update'],
+                        'forms' => [ 'admin.add_post' ]
+                    ]
+                ],
+                'add' => [
+                    'get' => [
+                        'callback' => [AdminItemController::class,'add'],
+                        'params' => [],
+                        'forms' => [ 'admin.add_post' ]
+                    ],
+                    'post' => [
+                        'callback' => [AdminItemController::class,'store'],
+                        'forms' => [ 'admin.add_post' ]
+                    ]
+                ],
+                'read' => [
+                    'get' => [
+                        'callback' => function() {}
+                    ]
+                ],
+                'delete' => [
+                    'delete' => [
+                        'callback' => [AdminItemController::class,'destroy'],
+                    ]
+                ]
             ],
-            'admin_access' => [
-                'browse' => 'can_browse',
+            /*'admin_access' => [
                 'read' => 'can_read',
                 'edit' => 'can_edit',
                 'add' => 'can_add',
                 'delete' => 'can_delete',
-            ],
+            ],*/
             'admin_menu' => true
         ];
 
@@ -85,8 +117,6 @@ class Model{
             ];
 
             \Route::prefix('admin')->group(function() use ( $model, $args, $slugs_array ) {
-                //set model as active model
-
                 //create admin crud
                 foreach ( $args['admin_crud'] as $context => $context_array ) {
                     foreach ( $context_array as $action_method => $action_data ) {
