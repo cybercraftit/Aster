@@ -108,5 +108,18 @@ class Form{
         ];
     }
 
+    public function auto_fill( $field_name, $request ) {
+        $form_fields = Form::instance()->get_form_fields( $field_name );
+        $modified_values = [];
+        foreach ( $form_fields as $field_name => $field ) {
+            if ( ! isset( $request->{$field_name} ) || ! $request->{$field_name} ) {
+                if ( isset( $field['onEmpty'] ) ) {
+                    $modified_values[$field_name] = $field['onEmpty']($request);
+                }
+            }
+        }
+        return $modified_values;
+    }
+
 
 }

@@ -53,6 +53,8 @@ class AdminItemController extends AdminController
     public function store(Request $request)
     {
         if ( isset( $request->form_name ) ) {
+            $modified_values = Form::instance()->auto_fill( $request->form_name, $request );
+            $request->merge($modified_values);
             $result = Form::instance()->is_valid( $request->form_name, $request );
             if ( ! $result['success'] ) {
                 return redirect()->back()->withErrors( $result['errors'] )->withInput();
@@ -104,6 +106,8 @@ class AdminItemController extends AdminController
     public function update(Request $request, $id)
     {
         if ( isset( $request->form_name ) ) {
+            $modified_values = Form::instance()->auto_fill( $request->form_name, $request );
+            $request->merge($modified_values);
             $result = Form::instance()->is_valid( $request->form_name, $request );
             if ( ! $result['success'] ) {
                 return redirect()->back()->withErrors( $result['errors'] )->withInput();

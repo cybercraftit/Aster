@@ -23,15 +23,7 @@ class AdminTaxonomyController extends AdminController
 
     public function store(Request $request) {
         if ( isset( $request->form_name ) ) {
-            $form_fields = Form::instance()->get_form_fields( $request->form_name );
-            $modified_values = [];
-            foreach ( $form_fields as $field_name => $field ) {
-                if ( ! isset( $request->{$field_name} ) || ! $request->{$field_name} ) {
-                    if ( isset( $field['onEmpty'] ) ) {
-                        $modified_values[$field_name] = $field['onEmpty']($request);
-                    }
-                }
-            }
+            $modified_values = Form::instance()->auto_fill( $request->form_name, $request );
             $request->merge($modified_values);
             $result = Form::instance()->is_valid( $request->form_name, $request );
             if ( ! $result['success'] ) {
@@ -41,5 +33,9 @@ class AdminTaxonomyController extends AdminController
 
         $request->model::create($request->all());
         return redirect()->route( Route::instance()->get_model_route_name( $request->model, 'browse', 'get', true ) );
+    }
+
+    public function edit( Request $request, $id ) {
+
     }
 }

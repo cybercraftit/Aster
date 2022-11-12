@@ -53,7 +53,12 @@
                                     <td>{{ $item->slug }}</td>
                                     <td>{{ $item->parent }}</td>
                                     <td>
-
+                                        <a class="btn btn-success" href="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( request()->model, 'edit', true, 'get', [ $item->term_id] ) }}">Edit</a>
+                                        <form method="post" action="{{ \Cybercraftit\Aster\Modules\Post\AdminIncludes\Route::instance()->get_model_route( request()->model, 'delete', true, 'delete', [ $item->term_id] ) }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <input type="submit" name="delete" value="Delete"  class="btn btn-danger">
+                                        </form>
 
                                     </td>
                                 </tr>
