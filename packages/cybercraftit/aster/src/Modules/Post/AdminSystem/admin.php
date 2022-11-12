@@ -181,7 +181,8 @@ class Admin{
                 'browse' => [
                     'get' => [
                         'callback' => [AdminTaxonomyController::class,'index'],
-                        'params' => [ 'a' => 'Hello world']
+                        'params' => [ 'a' => 'Hello world'],
+                        'forms' => [ 'admin.add_term' ]
                     ]
                 ],
                 'edit' => [

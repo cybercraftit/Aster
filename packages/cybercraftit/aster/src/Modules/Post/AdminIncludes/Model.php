@@ -4,6 +4,7 @@ namespace Cybercraftit\Aster\Modules\Post\AdminIncludes;
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
 use Cybercraftit\Aster\Modules\Core\Http\Controllers\Admin\AdminItemController;
+use Cybercraftit\Aster\Modules\Core\Models\Category;
 use Cybercraftit\Aster\Modules\Post\Models\Page;
 use Illuminate\Http\Request;
 

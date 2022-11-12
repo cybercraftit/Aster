@@ -62,59 +62,8 @@ class Taxonomy{
                 'browse' => [
                     'get' => [
                         'callback' => [AdminTaxonomyController::class,'index'],
-                        'params' => [ 'a' => 'Hello world']
-                    ]
-                ],
-                'edit' => [
-                    'get' => [
-                        'callback' => [AdminTaxonomyController::class,'edit'],
-                        'params' => [],
-                        'forms' => [ 'admin.add_post' ]
-                    ],
-                    'post' => [
-                        'callback' => [AdminTaxonomyController::class,'update'],
-                        'forms' => [ 'admin.add_post' ]
-                    ]
-                ],
-                'add' => [
-                    'get' => [
-                        'callback' => [AdminTaxonomyController::class,'add'],
-                        'params' => [],
-                        'forms' => [ 'admin.add_post' ]
-                    ],
-                    'post' => [
-                        'callback' => [AdminTaxonomyController::class,'store'],
-                        'forms' => [ 'admin.add_post' ]
-                    ]
-                ],
-                'read' => [
-                    'get' => [
-                        'callback' => function() {}
-                    ]
-                ],
-                'delete' => [
-                    'delete' => [
-                        'callback' => [AdminItemController::class,'destroy'],
-                    ]
-                ]
-            ],
-        ];
-
-        $args = array_merge( $default, $args );
-        $this->taxonomies[$model][$tax_model::$taxonomy] = $args;
-
-        $model_args = [
-            'label' => [ 'singular' => $args['singular_label'], 'plural' => $args['label'] ],
-            'slug' => $args['rewrite']['slug'],
-            /*'crud' => [
-                'browse' => function() {},
-                'read' => function() {}
-            ],*/
-            'admin_crud' => [
-                'browse' => [
-                    'get' => [
-                        'callback' => [AdminTaxonomyController::class,'index'],
-                        'params' => [ 'a' => 'Hello world']
+                        'params' => [ 'a' => 'Hello world'],
+                        'forms' => [ 'admin.add_term' ]
                     ]
                 ],
                 'edit' => [
@@ -150,13 +99,26 @@ class Taxonomy{
                     ]
                 ]
             ],
+        ];
+
+        $args = array_merge( $default, $args );
+        $this->taxonomies[$model][$tax_model::$taxonomy] = $args;
+
+        $model_args = [
+            'label' => [ 'singular' => $args['singular_label'], 'plural' => $args['label'] ],
+            'slug' => $args['rewrite']['slug'],
+            /*'crud' => [
+                'browse' => function() {},
+                'read' => function() {}
+            ],*/
+            'admin_crud' => $args['admin_crud'],
             /*'admin_access' => [
                 'read' => 'can_read',
                 'edit' => 'can_edit',
                 'add' => 'can_add',
                 'delete' => 'can_delete',
             ],*/
-            'admin_menu' => true
+            'admin_menu' => false
         ];
 
         //register as model
