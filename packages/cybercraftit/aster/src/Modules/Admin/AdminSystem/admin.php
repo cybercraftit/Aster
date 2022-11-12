@@ -4,7 +4,9 @@ namespace Cybercraftit\Aster\Modules\Admin\AdminSystem;
 
 
 use Cybercraftit\Aster\Modules\Admin\AdminIncludes\Menu;
+use Cybercraftit\Aster\Modules\Core\Includes\Form;
 use Http\Controllers\Admin\AdminPostController;
+use Illuminate\Http\Request;
 
 class Admin {
 
@@ -41,6 +43,7 @@ class Admin {
 
     public function __construct() {
         $this->register_menu_items();
+        $this->register_forms();
     }
 
     public function register_menu_items() {
@@ -56,6 +59,38 @@ class Admin {
                 echo 'This is post submenu page.';
             }
         ]);*/
+    }
+
+    public function register_forms() {
+        Form::instance()->register_form( 'admin.add_term',
+            [
+                'name' => [
+                    'type' => 'text',
+                    'label' => 'Name',
+                    'rules' => 'required',
+                    'error_messages' => [
+                        'name.required' => 'The name field is mandatory.'
+                    ]
+                ],
+                'slug' => [
+                    'type' => 'text',
+                    'label' => 'Slug',
+//                    'rules' => 'unique|terms',
+                    'error_messages' => [
+//                        'slug.unique' => 'The slug should be unique.'
+                    ],
+                    'onEmpty' => function( Request $request ) {
+                        return $request->name;
+                    }
+                ],
+                'description' => [
+                    'type' => 'textarea',
+                    'label' => 'Description'
+                ],
+                'submit' => [ 'type' => 'submit', 'label' => 'Save form']
+
+            ]
+        );
     }
 }
 
