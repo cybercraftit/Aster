@@ -8,19 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends PostRoot
 {
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope('post_type', function (Builder $builder) {
-            $builder->where('post_type', 'post' );
-        });
-    }
+    public static $post_type = 'post';
 
     public function author() {
         return $this->belongsTo( User::class, 'post_author', 'ID' );

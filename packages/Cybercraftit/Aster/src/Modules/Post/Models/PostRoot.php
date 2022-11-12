@@ -20,7 +20,7 @@ class PostRoot extends Model
     protected $table = 'posts';
     protected $primaryKey = 'ID';
     public $timestamps = false;
-    protected static $post_type = 'post';
+    public static $post_type = 'post';
 
     public function author() {
         return $this->belongsTo( User::class, 'post_author', 'ID' );
